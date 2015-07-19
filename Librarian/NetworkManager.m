@@ -11,6 +11,16 @@
 
 @implementation NetworkManager
 
++(NetworkManager *)sharedManager{
+    
+    static NetworkManager *_sharedManager = nil;
+    static dispatch_once_t oncePredicate;
+    dispatch_once(&oncePredicate, ^{
+        _sharedManager = [[NetworkManager alloc]init];
+    });
+    return _sharedManager;
+}
+
 -(void)fetchBooksWithCompletionBlock:(FetchBooksCompletionBlock)callback{
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/books", ENDPOINT_URL]];
@@ -24,6 +34,33 @@
     }];
     
     [dataTask resume];
+}
+
+-(void)updateCheckOutInfoWithUsername:(NSString *)username bookInfo:(NSString *)bookURL completionBlock:(UpdateCheckOutInfoCompletionBlock)callback{
+    
+    NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", ENDPOINT_URL, bookURL]];
+    
+    //replace with mutable string, and add date info
+    NSString *dataString = [NSString stringWithFormat:@"lastCheckedOutBy=%@", username];
+    NSData *userData = [dataString dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSMutableURLRequest *theRequest = [[NSMutableURLRequest alloc]initWithURL:theURL];
+    
+    [theRequest setHTTPMethod:@"PUT"];
+    [theRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [theRequest setHTTPBody:userData];
+    
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
+    
+    NSURLSessionUploadTask *uploadTask = [session uploadTaskWithRequest:theRequest fromData:userData completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (!error) {
+            
+            NSDictionary *dataDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            callback(dataDict);
+        }
+    }];
+    [uploadTask resume];
 }
 
 @end

@@ -26,7 +26,7 @@
 
 -(NetworkManager *)networkManager{
     if (!_networkManager) {
-        _networkManager = [[NetworkManager alloc]init];
+        _networkManager = [NetworkManager sharedManager];
     }
     return _networkManager;
 }
@@ -42,6 +42,11 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
+    [self fetchBooks];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     [self fetchBooks];
 }
 

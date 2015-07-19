@@ -18,6 +18,7 @@
 		BE5901EA1B5B4FE6008206CC /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5901E91B5B4FE6008206CC /* Constants.m */; };
 		BE5901ED1B5B503E008206CC /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5901EC1B5B503E008206CC /* NetworkManager.m */; };
 		BE5901F01B5B54D5008206CC /* BookDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5901EF1B5B54D5008206CC /* BookDetailViewController.m */; };
+		BEC2CD841B5C077C009B7EE5 /* CustomUIAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC2CD831B5C077C009B7EE5 /* CustomUIAlertView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,8 @@
 		BE5901EC1B5B503E008206CC /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		BE5901EE1B5B54D5008206CC /* BookDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookDetailViewController.h; sourceTree = "<group>"; };
 		BE5901EF1B5B54D5008206CC /* BookDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookDetailViewController.m; sourceTree = "<group>"; };
+		BEC2CD821B5C077C009B7EE5 /* CustomUIAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomUIAlertView.h; sourceTree = "<group>"; };
+		BEC2CD831B5C077C009B7EE5 /* CustomUIAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomUIAlertView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +151,8 @@
 			children = (
 				BE5901E21B5B4EC9008206CC /* BookTableViewCell.h */,
 				BE5901E31B5B4EC9008206CC /* BookTableViewCell.m */,
+				BEC2CD821B5C077C009B7EE5 /* CustomUIAlertView.h */,
+				BEC2CD831B5C077C009B7EE5 /* CustomUIAlertView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -265,6 +270,7 @@
 			files = (
 				BE5901EA1B5B4FE6008206CC /* Constants.m in Sources */,
 				BE5901E41B5B4EC9008206CC /* BookTableViewCell.m in Sources */,
+				BEC2CD841B5C077C009B7EE5 /* CustomUIAlertView.m in Sources */,
 				BE5901C51B5B4CA2008206CC /* MasterViewController.m in Sources */,
 				BE5901C21B5B4CA2008206CC /* AppDelegate.m in Sources */,
 				BE5901ED1B5B503E008206CC /* NetworkManager.m in Sources */,
@@ -464,6 +470,7 @@
 				BE5901DE1B5B4CA2008206CC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BE5901DF1B5B4CA2008206CC /* Build configuration list for PBXNativeTarget "LibrarianTests" */ = {
 			isa = XCConfigurationList;
@@ -472,6 +479,7 @@
 				BE5901E11B5B4CA2008206CC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
