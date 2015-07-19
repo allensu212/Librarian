@@ -32,6 +32,13 @@
     [dataString appendFormat:@"&title=%@", newBook.bookTitle];
     [dataString appendFormat:@"&publisher=%@", newBook.publisher];
     
+    NSDate *theDate = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    NSString *dateString = [dateFormatter stringFromDate:theDate];
+    
+    [dataString appendFormat:@"&lastCheckedOut=%@", dateString];
+    [dataString appendFormat:@"&lastCheckedOutBy=Default"];
+    
     NSData *userData = [dataString dataUsingEncoding:NSUTF8StringEncoding];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url];
     

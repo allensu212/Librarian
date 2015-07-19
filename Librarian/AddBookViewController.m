@@ -8,6 +8,7 @@
 
 #import "AddBookViewController.h"
 #import "NetworkManager.h"
+#import "SVProgressHUD.h"
 #import "Book.h"
 
 typedef enum : NSInteger {
@@ -95,9 +96,13 @@ typedef enum : NSInteger {
         
         [networkManager addNewBook:self.book withCompletionBlock:^{
             
-            //dismiss spinner in main thread
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [SVProgressHUD dismiss];
+            });
             
         }];
+        
+        [SVProgressHUD showWithStatus:@"Adding"];
     }
     else
     {
