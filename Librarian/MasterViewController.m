@@ -12,7 +12,7 @@
 #import "NetworkManager.h"
 #import "Constants.h"
 
-@interface MasterViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface MasterViewController () <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *booksDataArray;
 @property (nonatomic, strong) NetworkManager *networkManager;
@@ -94,16 +94,30 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-#pragma mark - IBAction
+#pragma mark - UIAlertViewDelegate
 
-- (IBAction)deleteAllBooks:(id)sender
-{
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) {
+        [self deleteAllBooks];
+    }
+}
+
+-(void)deleteAllBooks{
+    
     [self.networkManager deleteAllBooksWithCompletionBlock:^(NSArray *dataArray) {
         self.booksDataArray = [NSMutableArray arrayWithArray:dataArray];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });
     }];
+}
+
+#pragma mark - IBAction
+
+- (IBAction)deleteAllBooks:(id)sender
+{
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Are You Sure?" message:@"Delete all books at once?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes", nil];
+    [alertView show];
 }
 
 #pragma mark - Navigation
