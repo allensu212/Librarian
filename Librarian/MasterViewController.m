@@ -15,7 +15,7 @@
 @interface MasterViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, copy) NSArray *booksDataArray;
+@property (nonatomic, strong) NSMutableArray *booksDataArray;
 @property (nonatomic, strong) NetworkManager *networkManager;
 
 @end
@@ -29,13 +29,6 @@
         _networkManager = [NetworkManager sharedManager];
     }
     return _networkManager;
-}
-
--(NSArray *)booksDataArray{
-    if (!_booksDataArray) {
-        _booksDataArray = [[NSArray alloc]init];
-    }
-    return _booksDataArray;
 }
 
 #pragma mark - LifeCycle
@@ -55,8 +48,7 @@
 -(void)fetchBooks{
     
     [self.networkManager fetchBooksWithCompletionBlock:^(NSArray *dataArray) {
-        self.booksDataArray = dataArray;
-        
+        self.booksDataArray = [NSMutableArray arrayWithArray:dataArray];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });
@@ -75,7 +67,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [_booksDataArray count];
+    return [self.booksDataArray count];
 }
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -87,14 +79,10 @@
         [self.networkManager deleteBook:selectedBookDict[@"url"] withCompletionBlock:^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                //delete animation
-                
+                [self.booksDataArray removeObjectAtIndex:indexPath.row];
+                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             });
         }];
-    }
-    else
-    {
-        return;
     }
 }
 

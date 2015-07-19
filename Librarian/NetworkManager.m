@@ -73,11 +73,6 @@
     
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:theRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (!error) {
-            
-            NSDictionary *dataDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-            
-            NSLog(@"dataDict: %@", dataDict);
-            
             callback();
         }
     }];

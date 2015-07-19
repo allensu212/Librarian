@@ -95,13 +95,10 @@ typedef enum : NSInteger {
         NetworkManager *networkManager = [NetworkManager sharedManager];
         
         [networkManager addNewBook:self.book withCompletionBlock:^{
-            
             dispatch_async(dispatch_get_main_queue(), ^{
                 [SVProgressHUD dismiss];
             });
-            
         }];
-        
         [SVProgressHUD showWithStatus:@"Adding"];
     }
     else
@@ -109,7 +106,6 @@ typedef enum : NSInteger {
         //handling error...
     }
 }
-
 
 - (IBAction)done:(id)sender
 {
