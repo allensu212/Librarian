@@ -8,7 +8,7 @@
 
 #import "BookDetailViewController.h"
 #import "NetworkManager.h"
-#import "CustomUIAlertView.h"
+#import "UICustomAlertView.h"
 
 @interface BookDetailViewController () <UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *bookTitleTextView;
@@ -74,7 +74,7 @@
 }
 
 - (IBAction)checkout:(id)sender {
-    CustomUIAlertView *alertView = [[CustomUIAlertView alloc]initWithTitle:@"Hi Visiter" message:@"Please enter your name" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles: @"Checkout", nil];
+    UICustomAlertView *alertView = [[UICustomAlertView alloc]initWithTitle:@"Hi Visiter" message:@"Please enter your name" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles: @"Checkout", nil];
     [alertView show];
 }
 

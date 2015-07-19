@@ -73,7 +73,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Books" id="wWv-Sx-VyE">
-                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="Puq-Jh-7Ng"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="Puq-Jh-7Ng">
+                            <connections>
+                                <segue destination="iZI-8B-hC2" kind="presentation" identifier="addBook" id="eKc-kb-rac"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
@@ -83,6 +87,81 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1034" y="315"/>
+        </scene>
+        <!--Add Book-->
+        <scene sceneID="utk-IT-b65">
+            <objects>
+                <viewController id="4Fl-rm-qQ5" customClass="AddBookViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eqj-01-HaQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="ePJ-LS-Seb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zhc-dB-P4d">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cor-SP-QTK" userLabel="textFieldsHolder">
+                                <rect key="frame" x="0.0" y="72" width="320" height="196"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Book Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M6A-YW-vnB">
+                                        <rect key="frame" x="16" y="8" width="289" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="4Fl-rm-qQ5" id="c2p-SH-oLr"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Author" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KPu-hA-1dI">
+                                        <rect key="frame" x="16" y="58" width="289" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="4Fl-rm-qQ5" id="UI0-rj-Gy7"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Publisher" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="puk-b7-Dm2">
+                                        <rect key="frame" x="16" y="108" width="289" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="4Fl-rm-qQ5" id="k2U-ts-nxW"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Categories" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f7f-yT-xWj">
+                                        <rect key="frame" x="16" y="158" width="289" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="4Fl-rm-qQ5" id="o2f-qP-nGM"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4wY-L2-Rly">
+                                <rect key="frame" x="78" y="280" width="165" height="110"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="submitNewBook:" destination="4Fl-rm-qQ5" eventType="touchUpInside" id="35c-9j-OV5"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Book" id="mDQ-Sm-Uqc">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="sxv-C3-TLi">
+                            <connections>
+                                <action selector="done:" destination="4Fl-rm-qQ5" id="fQF-pk-cft"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3iu-VN-LpP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1845" y="51"/>
         </scene>
         <!--Book Detail View Controller-->
         <scene sceneID="QGZ-Wd-fra">
@@ -170,7 +249,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZcH-Tq-hNc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1431" y="315"/>
+            <point key="canvasLocation" x="1471" y="765"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4rm-T6-yUw">
@@ -190,6 +269,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FUS-GX-KST" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="672" y="315"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="wxA-qO-uN9">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iZI-8B-hC2" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="QdB-YF-8c1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="4Fl-rm-qQ5" kind="relationship" relationship="rootViewController" id="nSk-ob-wec"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4DL-aW-lO3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1471" y="51"/>
         </scene>
     </scenes>
 </document>

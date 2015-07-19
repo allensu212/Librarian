@@ -18,7 +18,9 @@
 		BE5901EA1B5B4FE6008206CC /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5901E91B5B4FE6008206CC /* Constants.m */; };
 		BE5901ED1B5B503E008206CC /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5901EC1B5B503E008206CC /* NetworkManager.m */; };
 		BE5901F01B5B54D5008206CC /* BookDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5901EF1B5B54D5008206CC /* BookDetailViewController.m */; };
-		BEC2CD841B5C077C009B7EE5 /* CustomUIAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC2CD831B5C077C009B7EE5 /* CustomUIAlertView.m */; };
+		BE8022751B5C1A0200BFEFE1 /* AddBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8022741B5C1A0200BFEFE1 /* AddBookViewController.m */; };
+		BE8022781B5C1E3400BFEFE1 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8022771B5C1E3400BFEFE1 /* Book.m */; };
+		BEC2CD841B5C077C009B7EE5 /* UITextFieldAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC2CD831B5C077C009B7EE5 /* UITextFieldAlertView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,8 +55,12 @@
 		BE5901EC1B5B503E008206CC /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		BE5901EE1B5B54D5008206CC /* BookDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookDetailViewController.h; sourceTree = "<group>"; };
 		BE5901EF1B5B54D5008206CC /* BookDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookDetailViewController.m; sourceTree = "<group>"; };
-		BEC2CD821B5C077C009B7EE5 /* CustomUIAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomUIAlertView.h; sourceTree = "<group>"; };
-		BEC2CD831B5C077C009B7EE5 /* CustomUIAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomUIAlertView.m; sourceTree = "<group>"; };
+		BE8022731B5C1A0200BFEFE1 /* AddBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddBookViewController.h; sourceTree = "<group>"; };
+		BE8022741B5C1A0200BFEFE1 /* AddBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddBookViewController.m; sourceTree = "<group>"; };
+		BE8022761B5C1E3400BFEFE1 /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
+		BE8022771B5C1E3400BFEFE1 /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
+		BEC2CD821B5C077C009B7EE5 /* UICustomAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICustomAlertView.h; sourceTree = "<group>"; };
+		BEC2CD831B5C077C009B7EE5 /* UITextFieldAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITextFieldAlertView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +148,8 @@
 				BE5901C41B5B4CA2008206CC /* MasterViewController.m */,
 				BE5901EE1B5B54D5008206CC /* BookDetailViewController.h */,
 				BE5901EF1B5B54D5008206CC /* BookDetailViewController.m */,
+				BE8022731B5C1A0200BFEFE1 /* AddBookViewController.h */,
+				BE8022741B5C1A0200BFEFE1 /* AddBookViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -151,8 +159,8 @@
 			children = (
 				BE5901E21B5B4EC9008206CC /* BookTableViewCell.h */,
 				BE5901E31B5B4EC9008206CC /* BookTableViewCell.m */,
-				BEC2CD821B5C077C009B7EE5 /* CustomUIAlertView.h */,
-				BEC2CD831B5C077C009B7EE5 /* CustomUIAlertView.m */,
+				BEC2CD821B5C077C009B7EE5 /* UICustomAlertView.h */,
+				BEC2CD831B5C077C009B7EE5 /* UITextFieldAlertView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -162,6 +170,8 @@
 			children = (
 				BE5901E81B5B4FE6008206CC /* Constants.h */,
 				BE5901E91B5B4FE6008206CC /* Constants.m */,
+				BE8022761B5C1E3400BFEFE1 /* Book.h */,
+				BE8022771B5C1E3400BFEFE1 /* Book.m */,
 				BE5901EB1B5B503E008206CC /* NetworkManager.h */,
 				BE5901EC1B5B503E008206CC /* NetworkManager.m */,
 			);
@@ -268,14 +278,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE8022781B5C1E3400BFEFE1 /* Book.m in Sources */,
 				BE5901EA1B5B4FE6008206CC /* Constants.m in Sources */,
 				BE5901E41B5B4EC9008206CC /* BookTableViewCell.m in Sources */,
-				BEC2CD841B5C077C009B7EE5 /* CustomUIAlertView.m in Sources */,
+				BEC2CD841B5C077C009B7EE5 /* UITextFieldAlertView.m in Sources */,
 				BE5901C51B5B4CA2008206CC /* MasterViewController.m in Sources */,
 				BE5901C21B5B4CA2008206CC /* AppDelegate.m in Sources */,
 				BE5901ED1B5B503E008206CC /* NetworkManager.m in Sources */,
 				BE5901F01B5B54D5008206CC /* BookDetailViewController.m in Sources */,
 				BE5901BF1B5B4CA2008206CC /* main.m in Sources */,
+				BE8022751B5C1A0200BFEFE1 /* AddBookViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

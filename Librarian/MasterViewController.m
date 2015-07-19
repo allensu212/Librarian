@@ -92,7 +92,7 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
-    if ([segue.identifier isEqualToString:SEGUE_IDENTIFIER]) {
+    if ([segue.identifier isEqualToString:SEGUE_DETAIL_IDENTIFIER]) {
         if ([segue.destinationViewController isKindOfClass:[BookDetailViewController class]]) {
             
             NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *)sender];

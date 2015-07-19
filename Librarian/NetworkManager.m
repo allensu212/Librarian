@@ -8,6 +8,7 @@
 
 #import "NetworkManager.h"
 #import "Constants.h"
+#import "Book.h"
 
 @implementation NetworkManager
 
@@ -21,26 +22,41 @@
     return _sharedManager;
 }
 
--(void)fetchBooksWithCompletionBlock:(FetchBooksCompletionBlock)callback{
-    
+-(void)addNewBook:(Book *)newBook withCompletionBlock:(AddBookCompletionBlock)callback
+{
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/books", ENDPOINT_URL]];
+    
+    NSMutableString *dataString = [[NSMutableString alloc]init];
+    [dataString appendFormat:@"author=%@", newBook.author];
+    [dataString appendFormat:@"&categories=%@", newBook.categories];
+    [dataString appendFormat:@"&title=%@", newBook.bookTitle];
+    [dataString appendFormat:@"&publisher=%@", newBook.publisher];
+    
+    NSData *userData = [dataString dataUsingEncoding:NSUTF8StringEncoding];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url];
+    
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:userData];
+    
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    NSURLRequest *request = [[NSURLRequest alloc]initWithURL:url];
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    
+    NSURLSessionUploadTask *uploadTask = [session uploadTaskWithRequest:request fromData:userData completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (!error) {
-            NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-            callback(jsonArray);
+            
+            NSDictionary *dataDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            NSLog(@"POSTED DICT: %@", dataDict);
+            callback();
         }
     }];
     
-    [dataTask resume];
+    [uploadTask resume];
 }
 
 -(void)updateCheckOutInfoWithUsername:(NSString *)username bookInfo:(NSString *)bookURL completionBlock:(UpdateCheckOutInfoCompletionBlock)callback{
     
     NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", ENDPOINT_URL, bookURL]];
     
-    //replace with mutable string, and add date info
     NSString *dataString = [NSString stringWithFormat:@"lastCheckedOutBy=%@", username];
     NSData *userData = [dataString dataUsingEncoding:NSUTF8StringEncoding];
     
@@ -61,6 +77,21 @@
         }
     }];
     [uploadTask resume];
+}
+
+-(void)fetchBooksWithCompletionBlock:(FetchBooksCompletionBlock)callback{
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/books", ENDPOINT_URL]];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSURLRequest *request = [[NSURLRequest alloc]initWithURL:url];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (!error) {
+            NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+            callback(jsonArray);
+        }
+    }];
+    
+    [dataTask resume];
 }
 
 @end

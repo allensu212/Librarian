@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CustomUIAlertView : UIAlertView
+@interface UICustomAlertView : UIAlertView
 
 @end

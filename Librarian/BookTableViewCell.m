@@ -18,6 +18,7 @@
 @implementation BookTableViewCell
 
 -(void)configureCellWithDict:(NSDictionary *)dict{
+    
     self.bookTitleLabel.text = dict[@"title"];
     self.authorLabel.text = dict[@"author"];
 }

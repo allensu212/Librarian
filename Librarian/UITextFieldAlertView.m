@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 allensu. All rights reserved.
 //
 
-#import "CustomUIAlertView.h"
+#import "UICustomAlertView.h"
 
-@implementation CustomUIAlertView
+@implementation UICustomAlertView
 
 -(instancetype)initWithTitle:(NSString *)title message:(NSString *)message delegate:(id)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ...{
     if (self = [super initWithTitle:title message:message delegate:delegate cancelButtonTitle:cancelButtonTitle otherButtonTitles:otherButtonTitles, nil]) {
