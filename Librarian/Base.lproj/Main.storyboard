@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jv5-pb-dun">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="64" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jv5-pb-dun">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -76,6 +76,11 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="add" id="Puq-Jh-7Ng">
                             <connections>
                                 <segue destination="iZI-8B-hC2" kind="presentation" identifier="addBook" id="eKc-kb-rac"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Erase All" id="ktW-rq-Mmb">
+                            <connections>
+                                <action selector="deleteAllBooks:" destination="vXZ-lx-hvc" id="fi3-oC-eKO"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

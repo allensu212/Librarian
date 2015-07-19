@@ -12,7 +12,6 @@
 
 -(instancetype)initWithTitle:(NSString *)title message:(NSString *)message delegate:(id)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ...{
     if (self = [super initWithTitle:title message:message delegate:delegate cancelButtonTitle:cancelButtonTitle otherButtonTitles:otherButtonTitles, nil]) {
-        
         self.alertViewStyle = UIAlertViewStylePlainTextInput;
             UITextField * alertTextField = [self textFieldAtIndex:0];
         alertTextField.keyboardType = UIKeyboardTypeDefault;

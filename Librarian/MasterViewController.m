@@ -13,11 +13,9 @@
 #import "Constants.h"
 
 @interface MasterViewController () <UITableViewDataSource, UITableViewDelegate>
-
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *booksDataArray;
 @property (nonatomic, strong) NetworkManager *networkManager;
-
 @end
 
 @implementation MasterViewController
@@ -94,6 +92,18 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - IBAction
+
+- (IBAction)deleteAllBooks:(id)sender
+{
+    [self.networkManager deleteAllBooksWithCompletionBlock:^(NSArray *dataArray) {
+        self.booksDataArray = [NSMutableArray arrayWithArray:dataArray];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    }];
 }
 
 #pragma mark - Navigation

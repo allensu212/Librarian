@@ -22,6 +22,28 @@
     return _sharedManager;
 }
 
+-(void)deleteAllBooksWithCompletionBlock:(DeleteCollectionCompletionBlock)callback{
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/clean", ENDPOINT_URL]];
+    
+    NSMutableURLRequest *theRequest = [[NSMutableURLRequest alloc]initWithURL:url];
+    
+    [theRequest setHTTPMethod:@"DELETE"];
+    [theRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
+    
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:theRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (!error) {
+            
+            NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+            callback(jsonArray);
+        }
+    }];
+    [dataTask resume];
+}
+
 -(void)addNewBook:(Book *)newBook withCompletionBlock:(AddBookCompletionBlock)callback
 {
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/books", ENDPOINT_URL]];
@@ -76,9 +98,7 @@
             callback();
         }
     }];
-    
     [dataTask resume];
-    
 }
 
 -(void)updateCheckOutInfoWithUsername:(NSString *)username bookInfo:(NSString *)bookURL completionBlock:(UpdateCheckOutInfoCompletionBlock)callback{
