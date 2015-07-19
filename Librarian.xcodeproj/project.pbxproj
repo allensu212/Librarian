@@ -17,6 +17,7 @@
 		BE5901E41B5B4EC9008206CC /* BookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5901E31B5B4EC9008206CC /* BookTableViewCell.m */; };
 		BE5901EA1B5B4FE6008206CC /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5901E91B5B4FE6008206CC /* Constants.m */; };
 		BE5901ED1B5B503E008206CC /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5901EC1B5B503E008206CC /* NetworkManager.m */; };
+		BE5901F01B5B54D5008206CC /* BookDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5901EF1B5B54D5008206CC /* BookDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,8 @@
 		BE5901E91B5B4FE6008206CC /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		BE5901EB1B5B503E008206CC /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
 		BE5901EC1B5B503E008206CC /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
+		BE5901EE1B5B54D5008206CC /* BookDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookDetailViewController.h; sourceTree = "<group>"; };
+		BE5901EF1B5B54D5008206CC /* BookDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +137,8 @@
 			children = (
 				BE5901C31B5B4CA2008206CC /* MasterViewController.h */,
 				BE5901C41B5B4CA2008206CC /* MasterViewController.m */,
+				BE5901EE1B5B54D5008206CC /* BookDetailViewController.h */,
+				BE5901EF1B5B54D5008206CC /* BookDetailViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -263,6 +268,7 @@
 				BE5901C51B5B4CA2008206CC /* MasterViewController.m in Sources */,
 				BE5901C21B5B4CA2008206CC /* AppDelegate.m in Sources */,
 				BE5901ED1B5B503E008206CC /* NetworkManager.m in Sources */,
+				BE5901F01B5B54D5008206CC /* BookDetailViewController.m in Sources */,
 				BE5901BF1B5B4CA2008206CC /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

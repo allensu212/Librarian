@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  BookDetailViewController.h
 //  Librarian
 //
 //  Created by 蘇偉綸 on 2015/7/18.
@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MasterViewController : UIViewController
-
+@interface BookDetailViewController : UIViewController
+@property (nonatomic, strong) NSDictionary *bookData;
 @end
-

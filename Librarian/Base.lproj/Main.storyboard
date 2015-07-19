@@ -54,6 +54,7 @@
                                         <connections>
                                             <outlet property="authorLabel" destination="Ww5-Fq-n93" id="VRT-7G-g7x"/>
                                             <outlet property="bookTitleLabel" destination="jii-4p-ztO" id="Wou-Ek-LjB"/>
+                                            <segue destination="gyC-s7-6fE" kind="show" identifier="showBookDetail" id="KtA-Es-5fZ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -82,6 +83,94 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1034" y="315"/>
+        </scene>
+        <!--Book Detail View Controller-->
+        <scene sceneID="QGZ-Wd-fra">
+            <objects>
+                <viewController id="gyC-s7-6fE" customClass="BookDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jAL-si-yap"/>
+                        <viewControllerLayoutGuide type="bottom" id="gqX-G9-Ezh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Q6b-BI-kJu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" text="Book Title" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26y-Kh-yYD">
+                                <rect key="frame" x="16" y="72" width="288" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="80R-sX-FLM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BQv-6l-ZGO">
+                                <rect key="frame" x="16" y="142" width="288" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="eaJ-nr-8Q4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" text="Book Info" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="etl-pF-Sg3">
+                                <rect key="frame" x="16" y="171" width="288" height="150"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="PrZ-Ty-7xv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHH-m9-FnO">
+                                <rect key="frame" x="110" y="329" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="BFL-IA-XRn"/>
+                                    <constraint firstAttribute="width" constant="100" id="XP1-Qj-xDa"/>
+                                </constraints>
+                                <state key="normal" title="Checkout">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="checkout:" destination="gyC-s7-6fE" eventType="touchUpInside" id="ZQk-Es-vZd"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BQv-6l-ZGO" firstAttribute="trailing" secondItem="Q6b-BI-kJu" secondAttribute="trailingMargin" id="5Br-IK-vd4"/>
+                            <constraint firstItem="gqX-G9-Ezh" firstAttribute="top" secondItem="gHH-m9-FnO" secondAttribute="bottom" constant="209" id="7yy-TT-cvu"/>
+                            <constraint firstItem="etl-pF-Sg3" firstAttribute="top" secondItem="BQv-6l-ZGO" secondAttribute="bottom" constant="8" id="7zW-lh-vIS"/>
+                            <constraint firstItem="gHH-m9-FnO" firstAttribute="top" secondItem="etl-pF-Sg3" secondAttribute="bottom" constant="8" id="AVg-7X-TZA"/>
+                            <constraint firstItem="26y-Kh-yYD" firstAttribute="leading" secondItem="Q6b-BI-kJu" secondAttribute="leadingMargin" id="Ew2-Ka-0Y4"/>
+                            <constraint firstItem="etl-pF-Sg3" firstAttribute="leading" secondItem="Q6b-BI-kJu" secondAttribute="leadingMargin" id="GoB-f8-PB5"/>
+                            <constraint firstItem="etl-pF-Sg3" firstAttribute="trailing" secondItem="Q6b-BI-kJu" secondAttribute="trailingMargin" id="K66-hc-hkh"/>
+                            <constraint firstItem="26y-Kh-yYD" firstAttribute="top" secondItem="jAL-si-yap" secondAttribute="bottom" constant="8" id="PVu-9y-IeU"/>
+                            <constraint firstItem="26y-Kh-yYD" firstAttribute="trailing" secondItem="Q6b-BI-kJu" secondAttribute="trailingMargin" id="Uct-II-Q0v"/>
+                            <constraint firstItem="BQv-6l-ZGO" firstAttribute="top" secondItem="26y-Kh-yYD" secondAttribute="bottom" constant="20" id="WnC-yd-70g"/>
+                            <constraint firstItem="gHH-m9-FnO" firstAttribute="top" secondItem="etl-pF-Sg3" secondAttribute="bottom" constant="8" id="YVK-m7-8vG"/>
+                            <constraint firstItem="BQv-6l-ZGO" firstAttribute="leading" secondItem="Q6b-BI-kJu" secondAttribute="leadingMargin" id="ZAn-AI-UZ9"/>
+                            <constraint firstItem="BQv-6l-ZGO" firstAttribute="top" secondItem="26y-Kh-yYD" secondAttribute="bottom" constant="20" id="t2M-cc-AnL"/>
+                            <constraint firstItem="etl-pF-Sg3" firstAttribute="top" secondItem="BQv-6l-ZGO" secondAttribute="bottom" constant="8" id="vMt-Cs-56H"/>
+                            <constraint firstAttribute="centerX" secondItem="gHH-m9-FnO" secondAttribute="centerX" id="zhh-W3-9ss"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="7yy-TT-cvu"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="authorLabel" destination="BQv-6l-ZGO" id="WUd-vW-uqF"/>
+                        <outlet property="bookInfoTextView" destination="etl-pF-Sg3" id="TSI-yn-GMd"/>
+                        <outlet property="bookTitleTextView" destination="26y-Kh-yYD" id="bcA-Uc-zz1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZcH-Tq-hNc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1431" y="315"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4rm-T6-yUw">

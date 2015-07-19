@@ -7,6 +7,7 @@
 //
 
 #import "MasterViewController.h"
+#import "BookDetailViewController.h"
 #import "BookTableViewCell.h"
 #import "NetworkManager.h"
 #import "Constants.h"
@@ -40,17 +41,17 @@
 #pragma mark - LifeCycle
 
 -(void)viewDidLoad{
-    
     [super viewDidLoad];
-    
     [self fetchBooks];
 }
 
 #pragma mark - Networking
 
 -(void)fetchBooks{
+    
     [self.networkManager fetchBooksWithCompletionBlock:^(NSArray *dataArray) {
         self.booksDataArray = dataArray;
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });
@@ -62,7 +63,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     NSDictionary *selectedBookDict = self.booksDataArray[indexPath.row];
-    BookTableViewCell *bookCell = [tableView dequeueReusableCellWithIdentifier:@"bookCell" forIndexPath:indexPath];
+    BookTableViewCell *bookCell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER forIndexPath:indexPath];
     [bookCell configureCellWithDict:selectedBookDict];
     
     return bookCell;
@@ -80,6 +81,21 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - Navigation
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if ([segue.identifier isEqualToString:SEGUE_IDENTIFIER]) {
+        if ([segue.destinationViewController isKindOfClass:[BookDetailViewController class]]) {
+            
+            NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *)sender];
+            NSDictionary *selectedBook = self.booksDataArray[indexPath.row];
+            BookDetailViewController *detailController = segue.destinationViewController;
+            detailController.bookData = selectedBook;
+        }
+    }
 }
 
 @end
