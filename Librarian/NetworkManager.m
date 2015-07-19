@@ -60,6 +60,32 @@
     [uploadTask resume];
 }
 
+-(void)deleteBook:(NSString *)bookURL withCompletionBlock:(DeleteBookCompletionBlock)callback{
+    
+    NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", ENDPOINT_URL, bookURL]];
+    NSMutableURLRequest *theRequest = [[NSMutableURLRequest alloc]initWithURL:theURL];
+    
+    [theRequest setHTTPMethod:@"DELETE"];
+    [theRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
+    
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:theRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (!error) {
+            
+            NSDictionary *dataDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            
+            NSLog(@"dataDict: %@", dataDict);
+            
+            callback();
+        }
+    }];
+    
+    [dataTask resume];
+    
+}
+
 -(void)updateCheckOutInfoWithUsername:(NSString *)username bookInfo:(NSString *)bookURL completionBlock:(UpdateCheckOutInfoCompletionBlock)callback{
     
     NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", ENDPOINT_URL, bookURL]];

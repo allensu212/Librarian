@@ -78,6 +78,26 @@
     return [_booksDataArray count];
 }
 
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        NSDictionary *selectedBookDict = self.booksDataArray[indexPath.row];
+        
+        [self.networkManager deleteBook:selectedBookDict[@"url"] withCompletionBlock:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                //delete animation
+                
+            });
+        }];
+    }
+    else
+    {
+        return;
+    }
+}
+
 #pragma mark - UITableViewDelegate
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
