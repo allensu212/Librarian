@@ -9,11 +9,14 @@
 /* Begin PBXBuildFile section */
 		BE5901BF1B5B4CA2008206CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5901BE1B5B4CA2008206CC /* main.m */; };
 		BE5901C21B5B4CA2008206CC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5901C11B5B4CA2008206CC /* AppDelegate.m */; };
-		BE5901C51B5B4CA2008206CC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5901C41B5B4CA2008206CC /* ViewController.m */; };
+		BE5901C51B5B4CA2008206CC /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5901C41B5B4CA2008206CC /* MasterViewController.m */; };
 		BE5901C81B5B4CA2008206CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE5901C61B5B4CA2008206CC /* Main.storyboard */; };
 		BE5901CA1B5B4CA2008206CC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE5901C91B5B4CA2008206CC /* Images.xcassets */; };
 		BE5901CD1B5B4CA2008206CC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE5901CB1B5B4CA2008206CC /* LaunchScreen.xib */; };
 		BE5901D91B5B4CA2008206CC /* LibrarianTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5901D81B5B4CA2008206CC /* LibrarianTests.m */; };
+		BE5901E41B5B4EC9008206CC /* BookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5901E31B5B4EC9008206CC /* BookTableViewCell.m */; };
+		BE5901EA1B5B4FE6008206CC /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5901E91B5B4FE6008206CC /* Constants.m */; };
+		BE5901ED1B5B503E008206CC /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5901EC1B5B503E008206CC /* NetworkManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +35,20 @@
 		BE5901BE1B5B4CA2008206CC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BE5901C01B5B4CA2008206CC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BE5901C11B5B4CA2008206CC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		BE5901C31B5B4CA2008206CC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		BE5901C41B5B4CA2008206CC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		BE5901C31B5B4CA2008206CC /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
+		BE5901C41B5B4CA2008206CC /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
 		BE5901C71B5B4CA2008206CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BE5901C91B5B4CA2008206CC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		BE5901CC1B5B4CA2008206CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		BE5901D21B5B4CA2008206CC /* LibrarianTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LibrarianTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE5901D71B5B4CA2008206CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE5901D81B5B4CA2008206CC /* LibrarianTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LibrarianTests.m; sourceTree = "<group>"; };
+		BE5901E21B5B4EC9008206CC /* BookTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookTableViewCell.h; sourceTree = "<group>"; };
+		BE5901E31B5B4EC9008206CC /* BookTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookTableViewCell.m; sourceTree = "<group>"; };
+		BE5901E81B5B4FE6008206CC /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		BE5901E91B5B4FE6008206CC /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		BE5901EB1B5B503E008206CC /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
+		BE5901EC1B5B503E008206CC /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,9 +92,10 @@
 			children = (
 				BE5901C01B5B4CA2008206CC /* AppDelegate.h */,
 				BE5901C11B5B4CA2008206CC /* AppDelegate.m */,
-				BE5901C31B5B4CA2008206CC /* ViewController.h */,
-				BE5901C41B5B4CA2008206CC /* ViewController.m */,
 				BE5901C61B5B4CA2008206CC /* Main.storyboard */,
+				BE5901E71B5B4FD1008206CC /* Model */,
+				BE5901E51B5B4FB4008206CC /* Controller */,
+				BE5901E61B5B4FC3008206CC /* View */,
 				BE5901C91B5B4CA2008206CC /* Images.xcassets */,
 				BE5901CB1B5B4CA2008206CC /* LaunchScreen.xib */,
 				BE5901BC1B5B4CA2008206CC /* Supporting Files */,
@@ -117,6 +127,35 @@
 				BE5901D71B5B4CA2008206CC /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BE5901E51B5B4FB4008206CC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BE5901C31B5B4CA2008206CC /* MasterViewController.h */,
+				BE5901C41B5B4CA2008206CC /* MasterViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		BE5901E61B5B4FC3008206CC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BE5901E21B5B4EC9008206CC /* BookTableViewCell.h */,
+				BE5901E31B5B4EC9008206CC /* BookTableViewCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		BE5901E71B5B4FD1008206CC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BE5901E81B5B4FE6008206CC /* Constants.h */,
+				BE5901E91B5B4FE6008206CC /* Constants.m */,
+				BE5901EB1B5B503E008206CC /* NetworkManager.h */,
+				BE5901EC1B5B503E008206CC /* NetworkManager.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,8 +258,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE5901C51B5B4CA2008206CC /* ViewController.m in Sources */,
+				BE5901EA1B5B4FE6008206CC /* Constants.m in Sources */,
+				BE5901E41B5B4EC9008206CC /* BookTableViewCell.m in Sources */,
+				BE5901C51B5B4CA2008206CC /* MasterViewController.m in Sources */,
 				BE5901C21B5B4CA2008206CC /* AppDelegate.m in Sources */,
+				BE5901ED1B5B503E008206CC /* NetworkManager.m in Sources */,
 				BE5901BF1B5B4CA2008206CC /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,25 +1,106 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Jda-Cl-5kE">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Books-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="MasterViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jv5-pb-dun">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="bookCell" rowHeight="64" id="Pqj-8I-Fj2" customClass="BookTableViewCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pqj-8I-Fj2" id="Sot-a7-e6p">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Book Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jii-4p-ztO">
+                                                    <rect key="frame" x="8" y="8" width="304" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ww5-Fq-n93">
+                                                    <rect key="frame" x="8" y="37" width="304" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="jii-4p-ztO" firstAttribute="trailing" secondItem="Sot-a7-e6p" secondAttribute="trailingMargin" id="7rf-WL-vwW"/>
+                                                <constraint firstItem="jii-4p-ztO" firstAttribute="top" secondItem="Sot-a7-e6p" secondAttribute="topMargin" id="Hzd-xa-FnV"/>
+                                                <constraint firstItem="Ww5-Fq-n93" firstAttribute="top" secondItem="jii-4p-ztO" secondAttribute="bottom" constant="8" id="Uwn-Ms-KV0"/>
+                                                <constraint firstItem="jii-4p-ztO" firstAttribute="leading" secondItem="Sot-a7-e6p" secondAttribute="leadingMargin" id="Uyt-5u-ohR"/>
+                                                <constraint firstItem="Ww5-Fq-n93" firstAttribute="leading" secondItem="Sot-a7-e6p" secondAttribute="leadingMargin" id="b7X-65-43w"/>
+                                                <constraint firstItem="Ww5-Fq-n93" firstAttribute="top" secondItem="jii-4p-ztO" secondAttribute="bottom" constant="8" id="cwr-eR-M3b"/>
+                                                <constraint firstItem="Ww5-Fq-n93" firstAttribute="trailing" secondItem="Sot-a7-e6p" secondAttribute="trailingMargin" id="yOw-fO-vDs"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Ww5-Fq-n93" secondAttribute="bottom" constant="-3" id="ya9-3z-YrZ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="authorLabel" destination="Ww5-Fq-n93" id="VRT-7G-g7x"/>
+                                            <outlet property="bookTitleLabel" destination="jii-4p-ztO" id="Wou-Ek-LjB"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="vXZ-lx-hvc" id="D2p-lK-6yU"/>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="Lm5-NN-yHO"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="jv5-pb-dun" secondAttribute="bottom" id="dlc-ug-T0x"/>
+                            <constraint firstItem="jv5-pb-dun" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" id="drl-Oo-d3r"/>
+                            <constraint firstItem="jv5-pb-dun" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="q62-hS-Pg5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="jv5-pb-dun" secondAttribute="trailing" constant="-16" id="vog-Gx-31u"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Books" id="wWv-Sx-VyE">
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="Puq-Jh-7Ng"/>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="tableView" destination="jv5-pb-dun" id="hGp-ry-ND5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1034" y="315"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="4rm-T6-yUw">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Jda-Cl-5kE" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fdR-OR-KTt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="Tjw-Kf-5mi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FUS-GX-KST" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="672" y="315"/>
         </scene>
     </scenes>
 </document>
