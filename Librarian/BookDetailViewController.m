@@ -37,7 +37,8 @@
     [self updateUIWithDict:self.bookData];
 }
 
--(void)configureNavigationBar{
+-(void)configureNavigationBar
+{
     self.navigationItem.title = @"Detail";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showShareSheet)];
 }
@@ -58,8 +59,7 @@
 
 -(void)configureBookCoverWithDict:(NSDictionary *)dict{
     
-    [self.networkManager fetchBookCoverWithBookTitle:dict[@"title"] withCompletionBlock:^(NSString *coverURL) {
-        
+    [self.networkManager fetchBookCoverWithBookTitle:dict[@"title"] withCompletionBlock:^(NSString *coverURL, NSDictionary *jsonDict) {
         NSURL * imageURL = [NSURL URLWithString:coverURL];
         NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
         

@@ -27,33 +27,31 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pqj-8I-Fj2" id="Sot-a7-e6p">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Book Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jii-4p-ztO">
-                                                    <rect key="frame" x="8" y="8" width="304" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Book Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jii-4p-ztO">
+                                                    <rect key="frame" x="64" y="8" width="248" height="21"/>
                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ww5-Fq-n93">
-                                                    <rect key="frame" x="8" y="37" width="304" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" fixedFrame="YES" text="author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ww5-Fq-n93">
+                                                    <rect key="frame" x="64" y="37" width="248" height="21"/>
                                                     <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="14"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wkq-Jw-09I">
+                                                    <rect key="frame" x="8" y="8" width="48" height="48"/>
+                                                </imageView>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="KJ9-AO-gB9">
+                                                    <rect key="frame" x="22" y="22" width="20" height="20"/>
+                                                </activityIndicatorView>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="jii-4p-ztO" firstAttribute="trailing" secondItem="Sot-a7-e6p" secondAttribute="trailingMargin" id="7rf-WL-vwW"/>
-                                                <constraint firstItem="jii-4p-ztO" firstAttribute="top" secondItem="Sot-a7-e6p" secondAttribute="topMargin" id="Hzd-xa-FnV"/>
-                                                <constraint firstItem="Ww5-Fq-n93" firstAttribute="top" secondItem="jii-4p-ztO" secondAttribute="bottom" constant="8" id="Uwn-Ms-KV0"/>
-                                                <constraint firstItem="jii-4p-ztO" firstAttribute="leading" secondItem="Sot-a7-e6p" secondAttribute="leadingMargin" id="Uyt-5u-ohR"/>
-                                                <constraint firstItem="Ww5-Fq-n93" firstAttribute="leading" secondItem="Sot-a7-e6p" secondAttribute="leadingMargin" id="b7X-65-43w"/>
-                                                <constraint firstItem="Ww5-Fq-n93" firstAttribute="top" secondItem="jii-4p-ztO" secondAttribute="bottom" constant="8" id="cwr-eR-M3b"/>
-                                                <constraint firstItem="Ww5-Fq-n93" firstAttribute="trailing" secondItem="Sot-a7-e6p" secondAttribute="trailingMargin" id="yOw-fO-vDs"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Ww5-Fq-n93" secondAttribute="bottom" constant="-3" id="ya9-3z-YrZ"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="authorLabel" destination="Ww5-Fq-n93" id="VRT-7G-g7x"/>
                                             <outlet property="bookTitleLabel" destination="jii-4p-ztO" id="Wou-Ek-LjB"/>
+                                            <outlet property="coverImageView" destination="Wkq-Jw-09I" id="ks0-8Q-KQV"/>
+                                            <outlet property="spinner" destination="KJ9-AO-gB9" id="C2n-1S-Gjb"/>
                                             <segue destination="gyC-s7-6fE" kind="show" identifier="showBookDetail" id="KtA-Es-5fZ"/>
                                         </connections>
                                     </tableViewCell>
@@ -204,7 +202,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KyA-My-Zjy">
                                 <rect key="frame" x="110" y="138" width="100" height="100"/>
                             </imageView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="0Mu-Lj-OKy">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="34L-aE-09u">
                                 <rect key="frame" x="150" y="178" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
@@ -216,7 +214,7 @@
                         <outlet property="bookCoverImageView" destination="KyA-My-Zjy" id="rhP-y5-Op5"/>
                         <outlet property="bookInfoTextView" destination="etl-pF-Sg3" id="TSI-yn-GMd"/>
                         <outlet property="bookTitleLabel" destination="Zze-FR-9Fd" id="XJm-Xc-8Zn"/>
-                        <outlet property="spinner" destination="0Mu-Lj-OKy" id="mSu-rN-xTm"/>
+                        <outlet property="spinner" destination="34L-aE-09u" id="xQr-Pf-cjf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZcH-Tq-hNc" userLabel="First Responder" sceneMemberID="firstResponder"/>

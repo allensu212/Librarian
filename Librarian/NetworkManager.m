@@ -135,8 +135,7 @@
             NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
             NSArray *resultsArray = jsonDict[@"results"];
             NSString *coverString = [self convertArtWorkStringWithArray:resultsArray];
-            callback(coverString);
-            NSLog(@"%@",resultsArray);
+            callback(coverString, jsonDict);
         }
     }];
     

@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface BookTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
+@property (weak, nonatomic) IBOutlet UIImageView *coverImageView;
 
 -(void)configureCellWithDict:(NSDictionary *)dict;
 

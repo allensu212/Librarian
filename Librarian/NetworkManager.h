@@ -12,7 +12,7 @@ typedef void(^FetchBooksCompletionBlock)(NSArray *dataArray);
 typedef void(^UpdateCheckOutInfoCompletionBlock)(NSDictionary *dataDict);
 typedef void(^AddBookCompletionBlock)(void);
 typedef void(^DeleteBookCompletionBlock)(void);
-typedef void(^FetchBookCoverCompletionBlock)(NSString *coverURL);
+typedef void(^FetchBookCoverCompletionBlock)(NSString *coverURL, NSDictionary *jsonDict);
 
 @class Book;
 
