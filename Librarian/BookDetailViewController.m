@@ -9,11 +9,17 @@
 #import "BookDetailViewController.h"
 #import "NetworkManager.h"
 #import "UICustomAlertView.h"
+#import "Constants.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface BookDetailViewController () <UIAlertViewDelegate>
-@property (weak, nonatomic) IBOutlet UITextView *bookTitleTextView;
+@property (weak, nonatomic) IBOutlet UILabel *bookTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 @property (weak, nonatomic) IBOutlet UITextView *bookInfoTextView;
+@property (weak, nonatomic) IBOutlet UIImageView *bookCoverImageView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
+@property (weak, nonatomic) IBOutlet UIVisualEffectView *blurView;
+@property (weak, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (nonatomic, strong) NetworkManager *networkManager;
 @end
 
@@ -34,15 +40,45 @@
     [self updateUIWithDict:self.bookData];
 }
 
--(void)configureNavigationBar{
+-(void)configureNavigationBar
+{
     self.navigationItem.title = @"Detail";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showShareSheet)];
 }
 
 -(void)updateUIWithDict:(NSDictionary *)dict{
-    self.bookInfoTextView.text = dict[@"title"];
+    
+    self.blurView.alpha = 1.0;
+    self.bookTitleLabel.text = dict[@"title"];
     self.authorLabel.text = dict[@"author"];
     self.bookInfoTextView.text = [NSString stringWithFormat:@"Publisher: %@\nTags: %@\n\nLast Checked Out:\n%@ @ %@", dict[@"publisher"], dict[@"categories"], dict[@"lastCheckedOutBy"], dict[@"lastCheckedOut"]];
+    self.bookInfoTextView.font = [UIFont fontWithName:FONT_MAIN size:14.0f];
+    self.bookInfoTextView.textAlignment = NSTextAlignmentRight;
+    self.bookTitleLabel.font = [UIFont fontWithName:FONT_MAIN size:20.0f];
+    
+    self.spinner.hidden = NO;
+    [self.spinner startAnimating];
+    
+    [self configureBookCoverWithDict:dict];
+}
+
+-(void)configureBookCoverWithDict:(NSDictionary *)dict{
+    
+    [self.networkManager fetchBookCoverWithBookTitle:dict[@"title"] withCompletionBlock:^(NSString *coverURL, NSDictionary *jsonDict) {
+        NSURL * imageURL = [NSURL URLWithString:coverURL];
+        NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            UIImage *coverImage = [UIImage imageWithData:imageData];
+            
+            self.bookCoverImageView.image = coverImage;
+            self.bgImageView.image = coverImage;
+            
+            [self.spinner stopAnimating];
+            self.spinner.hidden = YES;
+        });
+    }];
 }
 
 -(void)updateCheckOutInfoWithUsername:(NSString *)username{

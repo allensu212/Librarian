@@ -27,33 +27,31 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pqj-8I-Fj2" id="Sot-a7-e6p">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Book Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jii-4p-ztO">
-                                                    <rect key="frame" x="8" y="8" width="304" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jii-4p-ztO">
+                                                    <rect key="frame" x="64" y="8" width="248" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
+                                                    <color key="textColor" red="0.34901960780000002" green="0.40000000000000002" blue="0.68235294120000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ww5-Fq-n93">
-                                                    <rect key="frame" x="8" y="37" width="304" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wkq-Jw-09I">
+                                                    <rect key="frame" x="8" y="8" width="48" height="48"/>
+                                                </imageView>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="KJ9-AO-gB9">
+                                                    <rect key="frame" x="22" y="22" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ww5-Fq-n93">
+                                                    <rect key="frame" x="64" y="28" width="248" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="13"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="jii-4p-ztO" firstAttribute="trailing" secondItem="Sot-a7-e6p" secondAttribute="trailingMargin" id="7rf-WL-vwW"/>
-                                                <constraint firstItem="jii-4p-ztO" firstAttribute="top" secondItem="Sot-a7-e6p" secondAttribute="topMargin" id="Hzd-xa-FnV"/>
-                                                <constraint firstItem="Ww5-Fq-n93" firstAttribute="top" secondItem="jii-4p-ztO" secondAttribute="bottom" constant="8" id="Uwn-Ms-KV0"/>
-                                                <constraint firstItem="jii-4p-ztO" firstAttribute="leading" secondItem="Sot-a7-e6p" secondAttribute="leadingMargin" id="Uyt-5u-ohR"/>
-                                                <constraint firstItem="Ww5-Fq-n93" firstAttribute="leading" secondItem="Sot-a7-e6p" secondAttribute="leadingMargin" id="b7X-65-43w"/>
-                                                <constraint firstItem="Ww5-Fq-n93" firstAttribute="top" secondItem="jii-4p-ztO" secondAttribute="bottom" constant="8" id="cwr-eR-M3b"/>
-                                                <constraint firstItem="Ww5-Fq-n93" firstAttribute="trailing" secondItem="Sot-a7-e6p" secondAttribute="trailingMargin" id="yOw-fO-vDs"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Ww5-Fq-n93" secondAttribute="bottom" constant="-3" id="ya9-3z-YrZ"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="authorLabel" destination="Ww5-Fq-n93" id="VRT-7G-g7x"/>
                                             <outlet property="bookTitleLabel" destination="jii-4p-ztO" id="Wou-Ek-LjB"/>
+                                            <outlet property="coverImageView" destination="Wkq-Jw-09I" id="ks0-8Q-KQV"/>
+                                            <outlet property="spinner" destination="KJ9-AO-gB9" id="C2n-1S-Gjb"/>
                                             <segue destination="gyC-s7-6fE" kind="show" identifier="showBookDetail" id="KtA-Es-5fZ"/>
                                         </connections>
                                     </tableViewCell>
@@ -180,76 +178,73 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" text="Book Title" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26y-Kh-yYD">
-                                <rect key="frame" x="16" y="72" width="288" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="80R-sX-FLM"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BQv-6l-ZGO">
-                                <rect key="frame" x="16" y="142" width="288" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="eaJ-nr-8Q4"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" text="Book Info" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="etl-pF-Sg3">
-                                <rect key="frame" x="16" y="171" width="288" height="150"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="PrZ-Ty-7xv"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHH-m9-FnO">
-                                <rect key="frame" x="110" y="329" width="100" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="BFL-IA-XRn"/>
-                                    <constraint firstAttribute="width" constant="100" id="XP1-Qj-xDa"/>
-                                </constraints>
-                                <state key="normal" title="Checkout">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="checkout:" destination="gyC-s7-6fE" eventType="touchUpInside" id="ZQk-Es-vZd"/>
-                                </connections>
-                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nIz-Gw-fGB" userLabel="bgImageView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NHN-2p-Cmd">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="0be-Ng-6hc">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHH-m9-FnO">
+                                            <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                                            <color key="backgroundColor" red="0.50588235290000005" green="0.79215686269999996" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                                            <state key="normal" title="Checkout">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="checkout:" destination="gyC-s7-6fE" eventType="touchUpInside" id="ZQk-Es-vZd"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g78-md-21J" userLabel="contentHolder">
+                                <rect key="frame" x="0.0" y="84" width="320" height="426"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KyA-My-Zjy">
+                                        <rect key="frame" x="8" y="10" width="100" height="100"/>
+                                    </imageView>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="34L-aE-09u">
+                                        <rect key="frame" x="48" y="50" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Book Info" textAlignment="right" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="etl-pF-Sg3">
+                                        <rect key="frame" x="16" y="246" width="288" height="172"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Book Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zze-FR-9Fd">
+                                        <rect key="frame" x="116" y="10" width="186" height="30"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                        <color key="textColor" red="0.34901960780000002" green="0.40000000000000002" blue="0.68235294120000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BQv-6l-ZGO">
+                                        <rect key="frame" x="116" y="48" width="186" height="21"/>
+                                        <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="12"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="BQv-6l-ZGO" firstAttribute="trailing" secondItem="Q6b-BI-kJu" secondAttribute="trailingMargin" id="5Br-IK-vd4"/>
-                            <constraint firstItem="gqX-G9-Ezh" firstAttribute="top" secondItem="gHH-m9-FnO" secondAttribute="bottom" constant="209" id="7yy-TT-cvu"/>
-                            <constraint firstItem="etl-pF-Sg3" firstAttribute="top" secondItem="BQv-6l-ZGO" secondAttribute="bottom" constant="8" id="7zW-lh-vIS"/>
-                            <constraint firstItem="gHH-m9-FnO" firstAttribute="top" secondItem="etl-pF-Sg3" secondAttribute="bottom" constant="8" id="AVg-7X-TZA"/>
-                            <constraint firstItem="26y-Kh-yYD" firstAttribute="leading" secondItem="Q6b-BI-kJu" secondAttribute="leadingMargin" id="Ew2-Ka-0Y4"/>
-                            <constraint firstItem="etl-pF-Sg3" firstAttribute="leading" secondItem="Q6b-BI-kJu" secondAttribute="leadingMargin" id="GoB-f8-PB5"/>
-                            <constraint firstItem="etl-pF-Sg3" firstAttribute="trailing" secondItem="Q6b-BI-kJu" secondAttribute="trailingMargin" id="K66-hc-hkh"/>
-                            <constraint firstItem="26y-Kh-yYD" firstAttribute="top" secondItem="jAL-si-yap" secondAttribute="bottom" constant="8" id="PVu-9y-IeU"/>
-                            <constraint firstItem="26y-Kh-yYD" firstAttribute="trailing" secondItem="Q6b-BI-kJu" secondAttribute="trailingMargin" id="Uct-II-Q0v"/>
-                            <constraint firstItem="BQv-6l-ZGO" firstAttribute="top" secondItem="26y-Kh-yYD" secondAttribute="bottom" constant="20" id="WnC-yd-70g"/>
-                            <constraint firstItem="gHH-m9-FnO" firstAttribute="top" secondItem="etl-pF-Sg3" secondAttribute="bottom" constant="8" id="YVK-m7-8vG"/>
-                            <constraint firstItem="BQv-6l-ZGO" firstAttribute="leading" secondItem="Q6b-BI-kJu" secondAttribute="leadingMargin" id="ZAn-AI-UZ9"/>
-                            <constraint firstItem="BQv-6l-ZGO" firstAttribute="top" secondItem="26y-Kh-yYD" secondAttribute="bottom" constant="20" id="t2M-cc-AnL"/>
-                            <constraint firstItem="etl-pF-Sg3" firstAttribute="top" secondItem="BQv-6l-ZGO" secondAttribute="bottom" constant="8" id="vMt-Cs-56H"/>
-                            <constraint firstAttribute="centerX" secondItem="gHH-m9-FnO" secondAttribute="centerX" id="zhh-W3-9ss"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="7yy-TT-cvu"/>
-                            </mask>
-                        </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="authorLabel" destination="BQv-6l-ZGO" id="WUd-vW-uqF"/>
+                        <outlet property="bgImageView" destination="nIz-Gw-fGB" id="JbB-OK-NyX"/>
+                        <outlet property="blurView" destination="NHN-2p-Cmd" id="ik6-Pw-tV9"/>
+                        <outlet property="bookCoverImageView" destination="KyA-My-Zjy" id="rhP-y5-Op5"/>
                         <outlet property="bookInfoTextView" destination="etl-pF-Sg3" id="TSI-yn-GMd"/>
-                        <outlet property="bookTitleTextView" destination="26y-Kh-yYD" id="bcA-Uc-zz1"/>
+                        <outlet property="bookTitleLabel" destination="Zze-FR-9Fd" id="XJm-Xc-8Zn"/>
+                        <outlet property="spinner" destination="34L-aE-09u" id="xQr-Pf-cjf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZcH-Tq-hNc" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -22,6 +22,7 @@
 		BE8022781B5C1E3400BFEFE1 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8022771B5C1E3400BFEFE1 /* Book.m */; };
 		BE80227B1B5C331600BFEFE1 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = BE80227A1B5C331600BFEFE1 /* SVProgressHUD.m */; };
 		BEC2CD841B5C077C009B7EE5 /* UICustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC2CD831B5C077C009B7EE5 /* UICustomAlertView.m */; };
+		BED019611B5C94D20000E08E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED019601B5C94D20000E08E /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		BE80227A1B5C331600BFEFE1 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		BEC2CD821B5C077C009B7EE5 /* UICustomAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICustomAlertView.h; sourceTree = "<group>"; };
 		BEC2CD831B5C077C009B7EE5 /* UICustomAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICustomAlertView.m; sourceTree = "<group>"; };
+		BED019601B5C94D20000E08E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BED019611B5C94D20000E08E /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +111,7 @@
 				BE5901C01B5B4CA2008206CC /* AppDelegate.h */,
 				BE5901C11B5B4CA2008206CC /* AppDelegate.m */,
 				BE5901C61B5B4CA2008206CC /* Main.storyboard */,
+				BED019621B5C98000000E08E /* Frameworks */,
 				BE5901E71B5B4FD1008206CC /* Model */,
 				BE5901E51B5B4FB4008206CC /* Controller */,
 				BE5901E61B5B4FC3008206CC /* View */,
@@ -181,6 +185,14 @@
 				BE5901EC1B5B503E008206CC /* NetworkManager.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		BED019621B5C98000000E08E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BED019601B5C94D20000E08E /* QuartzCore.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

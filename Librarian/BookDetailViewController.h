@@ -10,4 +10,5 @@
 
 @interface BookDetailViewController : UIViewController
 @property (nonatomic, strong) NSDictionary *bookData;
+@property (nonatomic, strong) UIImage *imageToShow;
 @end
