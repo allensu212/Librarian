@@ -52,7 +52,7 @@
     self.bookTitleLabel.text = dict[@"title"];
     self.authorLabel.text = dict[@"author"];
     self.bookInfoTextView.text = [NSString stringWithFormat:@"Publisher: %@\nTags: %@\n\nLast Checked Out:\n%@ @ %@", dict[@"publisher"], dict[@"categories"], dict[@"lastCheckedOutBy"], dict[@"lastCheckedOut"]];
-    self.bookInfoTextView.font = [UIFont fontWithName:FONT_MAIN size:12.0f];
+    self.bookInfoTextView.font = [UIFont fontWithName:FONT_MAIN size:14.0f];
     self.bookInfoTextView.textAlignment = NSTextAlignmentRight;
     self.bookTitleLabel.font = [UIFont fontWithName:FONT_MAIN size:20.0f];
     
