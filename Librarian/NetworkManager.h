@@ -12,15 +12,18 @@ typedef void(^FetchBooksCompletionBlock)(NSArray *dataArray);
 typedef void(^UpdateCheckOutInfoCompletionBlock)(NSDictionary *dataDict);
 typedef void(^AddBookCompletionBlock)(void);
 typedef void(^DeleteBookCompletionBlock)(void);
+typedef void(^FetchBookCoverCompletionBlock)(NSString *coverURL);
 
 @class Book;
 
 @interface NetworkManager : NSObject
 
 +(NetworkManager *)sharedManager;
+
 -(void)fetchBooksWithCompletionBlock:(FetchBooksCompletionBlock)callback;
 -(void)updateCheckOutInfoWithUsername:(NSString *)username bookInfo:(NSString *)bookURL completionBlock:(UpdateCheckOutInfoCompletionBlock)callback;
 -(void)addNewBook:(Book *)newBook withCompletionBlock:(AddBookCompletionBlock)callback;
 -(void)deleteBook:(NSString *)bookURL withCompletionBlock:(DeleteBookCompletionBlock)callback;
+-(void)fetchBookCoverWithBookTitle:(NSString *)title withCompletionBlock:(FetchBookCoverCompletionBlock)callback;
 
 @end

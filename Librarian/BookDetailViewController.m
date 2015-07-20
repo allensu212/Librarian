@@ -9,11 +9,14 @@
 #import "BookDetailViewController.h"
 #import "NetworkManager.h"
 #import "UICustomAlertView.h"
+#import "Constants.h"
 
 @interface BookDetailViewController () <UIAlertViewDelegate>
-@property (weak, nonatomic) IBOutlet UITextView *bookTitleTextView;
+@property (weak, nonatomic) IBOutlet UILabel *bookTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 @property (weak, nonatomic) IBOutlet UITextView *bookInfoTextView;
+@property (weak, nonatomic) IBOutlet UIImageView *bookCoverImageView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @property (nonatomic, strong) NetworkManager *networkManager;
 @end
 
@@ -40,9 +43,32 @@
 }
 
 -(void)updateUIWithDict:(NSDictionary *)dict{
-    self.bookInfoTextView.text = dict[@"title"];
+    
+    self.bookTitleLabel.text = dict[@"title"];
     self.authorLabel.text = dict[@"author"];
     self.bookInfoTextView.text = [NSString stringWithFormat:@"Publisher: %@\nTags: %@\n\nLast Checked Out:\n%@ @ %@", dict[@"publisher"], dict[@"categories"], dict[@"lastCheckedOutBy"], dict[@"lastCheckedOut"]];
+    self.bookInfoTextView.font = [UIFont fontWithName:FONT_MAIN size:12.0f];
+    self.bookTitleLabel.font = [UIFont fontWithName:FONT_MAIN size:16.0f];
+    
+    self.spinner.hidden = NO;
+    [self.spinner startAnimating];
+    
+    [self configureBookCoverWithDict:dict];
+}
+
+-(void)configureBookCoverWithDict:(NSDictionary *)dict{
+    
+    [self.networkManager fetchBookCoverWithBookTitle:dict[@"title"] withCompletionBlock:^(NSString *coverURL) {
+        
+        NSURL * imageURL = [NSURL URLWithString:coverURL];
+        NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.bookCoverImageView.image = [UIImage imageWithData:imageData];
+            [self.spinner stopAnimating];
+            self.spinner.hidden = YES;
+        });
+    }];
 }
 
 -(void)updateCheckOutInfoWithUsername:(NSString *)username{
