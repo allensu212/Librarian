@@ -10,6 +10,7 @@
 #import "NetworkManager.h"
 #import "UICustomAlertView.h"
 #import "Constants.h"
+#import "NavigationBarLabel.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface BookDetailViewController () <UIAlertViewDelegate>
@@ -38,8 +39,10 @@
 
 -(void)configureNavigationBar
 {
-    self.navigationItem.title = @"Detail";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showShareSheet)];
+    
+    NavigationBarLabel *label = [[NavigationBarLabel alloc]initWithText:@"Detail"];
+    self.navigationItem.titleView = label;
 }
 
 -(void)updateUIWithDict:(NSDictionary *)dict{

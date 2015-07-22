@@ -23,6 +23,7 @@
 		BE80227B1B5C331600BFEFE1 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = BE80227A1B5C331600BFEFE1 /* SVProgressHUD.m */; };
 		BEC2CD841B5C077C009B7EE5 /* UICustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC2CD831B5C077C009B7EE5 /* UICustomAlertView.m */; };
 		BED019611B5C94D20000E08E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED019601B5C94D20000E08E /* QuartzCore.framework */; };
+		BEF1D2D21B5F334600D6A05C /* NavigationBarLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF1D2D11B5F334600D6A05C /* NavigationBarLabel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,8 @@
 		BEC2CD821B5C077C009B7EE5 /* UICustomAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICustomAlertView.h; sourceTree = "<group>"; };
 		BEC2CD831B5C077C009B7EE5 /* UICustomAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICustomAlertView.m; sourceTree = "<group>"; };
 		BED019601B5C94D20000E08E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		BEF1D2D01B5F334600D6A05C /* NavigationBarLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationBarLabel.h; sourceTree = "<group>"; };
+		BEF1D2D11B5F334600D6A05C /* NavigationBarLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationBarLabel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +173,8 @@
 				BEC2CD831B5C077C009B7EE5 /* UICustomAlertView.m */,
 				BE8022791B5C331600BFEFE1 /* SVProgressHUD.h */,
 				BE80227A1B5C331600BFEFE1 /* SVProgressHUD.m */,
+				BEF1D2D01B5F334600D6A05C /* NavigationBarLabel.h */,
+				BEF1D2D11B5F334600D6A05C /* NavigationBarLabel.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -299,6 +304,7 @@
 				BE5901EA1B5B4FE6008206CC /* Constants.m in Sources */,
 				BE5901E41B5B4EC9008206CC /* BookTableViewCell.m in Sources */,
 				BEC2CD841B5C077C009B7EE5 /* UICustomAlertView.m in Sources */,
+				BEF1D2D21B5F334600D6A05C /* NavigationBarLabel.m in Sources */,
 				BE5901C51B5B4CA2008206CC /* MasterViewController.m in Sources */,
 				BE5901C21B5B4CA2008206CC /* AppDelegate.m in Sources */,
 				BE5901ED1B5B503E008206CC /* NetworkManager.m in Sources */,

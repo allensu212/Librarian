@@ -7,18 +7,19 @@
 //
 
 #import "AddBookViewController.h"
+#import "NavigationBarLabel.h"
 #import "NetworkManager.h"
 #import "SVProgressHUD.h"
 #import "Book.h"
 
 typedef enum : NSInteger {
     INFO_BOOK_TITLE =0,
-    INFO_BOOK_AUTHOR =1,
+    INFO_BOOK_AUTHOR = 1,
     INFO_BOOK_PUBLISHER = 2,
     INFO_BOOK_CATEGORIES = 3,
 } NewBookInfoType;
 
-@interface AddBookViewController () <UITextFieldDelegate>
+@interface AddBookViewController () <UITextFieldDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) Book *book;
 @end
 
@@ -37,6 +38,17 @@ typedef enum : NSInteger {
 
 -(void)viewDidLoad{
     [super viewDidLoad];
+    [self configureNav];
+}
+
+-(void)configureNav{
+    NavigationBarLabel *label = [[NavigationBarLabel alloc]initWithText:@"Add Book"];
+    self.navigationItem.titleView = label;
+    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.view.backgroundColor = [UIColor clearColor];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
 }
 
 #pragma mark - UITextFieldDelegate
@@ -104,7 +116,8 @@ typedef enum : NSInteger {
     }
     else
     {
-        //handling error...
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Oops" message:@"Please enter Book Title and Author" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
     }
 }
 

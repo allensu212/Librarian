@@ -10,6 +10,7 @@
 #import "BookDetailViewController.h"
 #import "BookTableViewCell.h"
 #import "NetworkManager.h"
+#import "NavigationBarLabel.h"
 #import "Constants.h"
 
 @interface MasterViewController () <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
@@ -34,11 +35,22 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     [self fetchBooks];
+    [self configureNav];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self fetchBooks];
+}
+
+-(void)configureNav{
+    NavigationBarLabel *label = [[NavigationBarLabel alloc]initWithText:@"Books"];
+    self.navigationItem.titleView = label;
+    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.view.backgroundColor = [UIColor clearColor];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
 }
 
 #pragma mark - Networking
