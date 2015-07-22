@@ -39,7 +39,7 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qSX-g6-t0D" userLabel="dotView">
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qSX-g6-t0D" userLabel="dotView">
                                                     <rect key="frame" x="8" y="15" width="10" height="10"/>
                                                     <color key="backgroundColor" red="0.94117647059999998" green="0.5450980392" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 </view>
@@ -48,6 +48,7 @@
                                         <connections>
                                             <outlet property="authorLabel" destination="Ww5-Fq-n93" id="VRT-7G-g7x"/>
                                             <outlet property="bookTitleLabel" destination="jii-4p-ztO" id="Wou-Ek-LjB"/>
+                                            <outlet property="dotView" destination="qSX-g6-t0D" id="ieY-uT-3bJ"/>
                                             <segue destination="gyC-s7-6fE" kind="show" identifier="showBookDetail" id="KtA-Es-5fZ"/>
                                         </connections>
                                     </tableViewCell>
