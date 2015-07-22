@@ -39,16 +39,14 @@ typedef enum : NSInteger {
 -(void)viewDidLoad{
     [super viewDidLoad];
     [self configureNav];
+    
+    //merge to fetchDataInTable
+
 }
 
 -(void)configureNav{
     NavigationBarLabel *label = [[NavigationBarLabel alloc]initWithText:@"Add Book"];
     self.navigationItem.titleView = label;
-    self.navigationController.navigationBar.translucent = YES;
-    self.navigationController.navigationBar.shadowImage = [UIImage new];
-    self.navigationController.view.backgroundColor = [UIColor clearColor];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
 }
 
 #pragma mark - UITextFieldDelegate
@@ -75,7 +73,7 @@ typedef enum : NSInteger {
     }
 }
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField{
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     
     NewBookInfoType infoType = textField.tag;
     
@@ -95,7 +93,7 @@ typedef enum : NSInteger {
         default:
             break;
     }
-    return [textField resignFirstResponder];
+    return YES;
 }
 
 #pragma mark - IBAction
@@ -109,6 +107,7 @@ typedef enum : NSInteger {
         [networkManager addNewBook:self.book withCompletionBlock:^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 [SVProgressHUD dismiss];
+                [self dismissViewControllerAnimated:YES completion:nil];
             });
         }];
         [SVProgressHUD setBackgroundColor:[UIColor lightGrayColor]];
