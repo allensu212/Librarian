@@ -16,10 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *bookTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 @property (weak, nonatomic) IBOutlet UITextView *bookInfoTextView;
-@property (weak, nonatomic) IBOutlet UIImageView *bookCoverImageView;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
-@property (weak, nonatomic) IBOutlet UIVisualEffectView *blurView;
-@property (weak, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (nonatomic, strong) NetworkManager *networkManager;
 @end
 
@@ -48,37 +44,26 @@
 
 -(void)updateUIWithDict:(NSDictionary *)dict{
     
-    self.blurView.alpha = 1.0;
     self.bookTitleLabel.text = dict[@"title"];
     self.authorLabel.text = dict[@"author"];
-    self.bookInfoTextView.text = [NSString stringWithFormat:@"Publisher: %@\nTags: %@\n\nLast Checked Out:\n%@ @ %@", dict[@"publisher"], dict[@"categories"], dict[@"lastCheckedOutBy"], dict[@"lastCheckedOut"]];
-    self.bookInfoTextView.font = [UIFont fontWithName:FONT_MAIN size:14.0f];
-    self.bookInfoTextView.textAlignment = NSTextAlignmentRight;
     self.bookTitleLabel.font = [UIFont fontWithName:FONT_MAIN size:20.0f];
-    
-    self.spinner.hidden = NO;
-    [self.spinner startAnimating];
-    
-    [self configureBookCoverWithDict:dict];
+    [self configureTextViewUIFromDict:dict];
 }
 
--(void)configureBookCoverWithDict:(NSDictionary *)dict{
+-(void)configureTextViewUIFromDict:(NSDictionary *)dict{
     
-    [self.networkManager fetchBookCoverWithBookTitle:dict[@"title"] withCompletionBlock:^(NSString *coverURL, NSDictionary *jsonDict) {
-        NSURL * imageURL = [NSURL URLWithString:coverURL];
-        NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            UIImage *coverImage = [UIImage imageWithData:imageData];
-            
-            self.bookCoverImageView.image = coverImage;
-            self.bgImageView.image = coverImage;
-            
-            [self.spinner stopAnimating];
-            self.spinner.hidden = YES;
-        });
-    }];
+    NSString *dateString = dict[@"lastCheckedOut"];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy'-'MM'-'dd  HH':'mm':'ss"];
+    NSDate *date = [dateFormatter dateFromString:dateString];
+    [dateFormatter setDateFormat:@"MMM d, yyyy h:mm a"];
+    NSString *formattedString = [dateFormatter stringFromDate:date];
+    
+    self.bookInfoTextView.text = [NSString stringWithFormat:@"Publisher: %@\nTags: %@\n\nLast Checked Out:\n%@ @ %@", dict[@"publisher"], dict[@"categories"], dict[@"lastCheckedOutBy"], formattedString];
+    self.bookInfoTextView.font = [UIFont fontWithName:FONT_MAIN size:14.0f];
+    self.bookInfoTextView.textColor = [UIColor darkGrayColor];
+    self.bookInfoTextView.textAlignment = NSTextAlignmentRight;
+    
 }
 
 -(void)updateCheckOutInfoWithUsername:(NSString *)username{
@@ -105,7 +90,9 @@
 -(void)showShareSheet{
     
     NSMutableArray *activityItems = [[NSMutableArray alloc]initWithObjects:UIActivityTypePostToFacebook, UIActivityTypePostToTwitter, nil];
+    
     UIActivityViewController *shareController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+    
     [self presentViewController:shareController animated:YES completion:nil];
 }
 

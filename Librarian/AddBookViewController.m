@@ -99,6 +99,7 @@ typedef enum : NSInteger {
                 [SVProgressHUD dismiss];
             });
         }];
+        [SVProgressHUD setBackgroundColor:[UIColor lightGrayColor]];
         [SVProgressHUD showWithStatus:@"Adding"];
     }
     else
