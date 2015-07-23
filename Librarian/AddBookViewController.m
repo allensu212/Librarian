@@ -73,6 +73,10 @@ typedef enum : NSInteger {
     }
 }
 
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    return [textField resignFirstResponder];
+}
+
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     
     NewBookInfoType infoType = textField.tag;
