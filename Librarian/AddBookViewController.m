@@ -7,10 +7,10 @@
 //
 
 #import "AddBookViewController.h"
+#import "Book.h"
 #import "NavigationBarLabel.h"
 #import "NetworkManager.h"
 #import "SVProgressHUD.h"
-#import "Book.h"
 #import "UIAlertView+Blocks.h"
 
 typedef enum : NSInteger {
