@@ -107,12 +107,13 @@ typedef enum : NSInteger {
         
         [networkManager addNewBook:self.book withCompletionBlock:^{
             dispatch_async(dispatch_get_main_queue(), ^{
+                
                 [SVProgressHUD dismiss];
                 [self dismissViewControllerAnimated:YES completion:nil];
             });
         }];
-        [SVProgressHUD setBackgroundColor:[UIColor lightGrayColor]];
-        [SVProgressHUD showWithStatus:@"Adding"];
+        [SVProgressHUD setBackgroundColor:[UIColor whiteColor]];
+        [SVProgressHUD showWithStatus:@"Adding" maskType:SVProgressHUDMaskTypeGradient];
     }
     else
     {

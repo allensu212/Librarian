@@ -55,7 +55,12 @@
     [dateFormatter setDateFormat:@"MMM d, yyyy h:mm a"];
     NSString *formattedString = [dateFormatter stringFromDate:date];
     
-    self.bookInfoTextView.text = [NSString stringWithFormat:@"Publisher: %@\nTags: %@\n\nLast Checked Out:\n%@ @ %@", dict[@"publisher"], dict[@"categories"], dict[@"lastCheckedOutBy"], formattedString];
+    NSString *publisherString = dict[@"publisher"];
+    NSString *formattedPublisherString = [publisherString isEqualToString:@"(null)"] ? @"Deafult": dict[@"publisher"];
+    NSString *categoriesString = dict[@"categories"];
+    NSString *formattedCategoriesString = [categoriesString isEqualToString:@"(null)"] ? @"Deafult": dict[@"categories"];
+    
+    self.bookInfoTextView.text = [NSString stringWithFormat:@"Publisher: %@\nTags: %@\n\nLast Checked Out:\n%@ @ %@", formattedPublisherString, formattedCategoriesString, dict[@"lastCheckedOutBy"], formattedString];
     
     self.bookInfoTextView.font = [UIFont fontWithName:FONT_MAIN size:14.0f];
     self.bookInfoTextView.textColor = [UIColor darkGrayColor];
