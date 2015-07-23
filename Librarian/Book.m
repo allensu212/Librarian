@@ -10,15 +10,4 @@
 
 @implementation Book
 
--(instancetype)initWithTitle:(NSString *)title author:(NSString *)author publisher:(NSString *)publisher categories:(NSString *)categories{
-    
-    if (self = [super init]) {
-        _bookTitle = title;
-        _author = author;
-        _publisher = publisher;
-        _categories = categories;
-    }
-    return self;
-}
-
 @end

@@ -11,23 +11,14 @@
 #import "Constants.h"
 #import "NavigationBarLabel.h"
 #import "UIAlertView+Blocks.h"
-#import <QuartzCore/QuartzCore.h>
 
 @interface BookDetailViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *bookTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 @property (weak, nonatomic) IBOutlet UITextView *bookInfoTextView;
-@property (nonatomic, strong) NetworkManager *networkManager;
 @end
 
 @implementation BookDetailViewController
-
--(NetworkManager *)networkManager{
-    if (!_networkManager) {
-        _networkManager = [NetworkManager sharedManager];
-    }
-    return _networkManager;
-}
 
 #pragma mark - LifeCycle
 
@@ -36,6 +27,8 @@
     [self configureNavigationBar];
     [self updateUIWithDict:self.bookData];
 }
+
+#pragma mark - UISetup
 
 -(void)configureNavigationBar
 {
@@ -63,15 +56,17 @@
     NSString *formattedString = [dateFormatter stringFromDate:date];
     
     self.bookInfoTextView.text = [NSString stringWithFormat:@"Publisher: %@\nTags: %@\n\nLast Checked Out:\n%@ @ %@", dict[@"publisher"], dict[@"categories"], dict[@"lastCheckedOutBy"], formattedString];
+    
     self.bookInfoTextView.font = [UIFont fontWithName:FONT_MAIN size:14.0f];
     self.bookInfoTextView.textColor = [UIColor darkGrayColor];
     self.bookInfoTextView.textAlignment = NSTextAlignmentRight;
-    
 }
+
+#pragma mark - Networking
 
 -(void)updateCheckOutInfoWithUsername:(NSString *)username{
     
-    [self.networkManager updateCheckOutInfoWithUsername:username bookInfo:self.bookData[@"url"]completionBlock:^(NSDictionary *dataDict) {
+    [[NetworkManager sharedManager] updateCheckOutInfoWithUsername:username bookInfo:self.bookData[@"url"]completionBlock:^(NSDictionary *dataDict) {
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [self updateUIWithDict:dataDict];

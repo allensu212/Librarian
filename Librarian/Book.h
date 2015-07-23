@@ -15,6 +15,4 @@
 @property (nonatomic, strong) NSString *publisher;
 @property (nonatomic, strong) NSString *categories;
 
--(instancetype)initWithTitle:(NSString *)title author:(NSString *)author publisher:(NSString *)publisher categories:(NSString *)categories;
-
 @end

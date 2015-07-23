@@ -92,15 +92,6 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
--(void)deleteAllBooks{
-    
-    [[NetworkManager sharedManager] deleteAllBooksWithCompletionBlock:^(NSArray *dataArray) {
-        self.booksDataArray = [NSMutableArray arrayWithArray:dataArray];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
-    }];
-}
 
 #pragma mark - IBAction
 
@@ -116,6 +107,16 @@
     }];
 
     [alertView show];
+}
+
+-(void)deleteAllBooks{
+    
+    [[NetworkManager sharedManager] deleteAllBooksWithCompletionBlock:^(NSArray *dataArray) {
+        self.booksDataArray = [NSMutableArray arrayWithArray:dataArray];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    }];
 }
 
 #pragma mark - Navigation
