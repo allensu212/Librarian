@@ -11,6 +11,7 @@
 #import "NetworkManager.h"
 #import "SVProgressHUD.h"
 #import "Book.h"
+#import "UIAlertView+Blocks.h"
 
 typedef enum : NSInteger {
     INFO_BOOK_TITLE =0,
@@ -23,7 +24,9 @@ typedef enum : NSInteger {
 @property (nonatomic, strong) Book *book;
 @end
 
-@implementation AddBookViewController
+@implementation AddBookViewController{
+    BOOL _isEditing;
+}
 
 #pragma mark - LazyInstantiation
 
@@ -39,6 +42,7 @@ typedef enum : NSInteger {
 -(void)viewDidLoad{
     [super viewDidLoad];
     [self configureNav];
+    _isEditing = NO;
 }
 
 -(void)configureNav{
@@ -94,6 +98,9 @@ typedef enum : NSInteger {
         default:
             break;
     }
+    
+    _isEditing = YES;
+    
     return YES;
 }
 
@@ -109,6 +116,7 @@ typedef enum : NSInteger {
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 [SVProgressHUD dismiss];
+                _isEditing = NO;
                 [self dismissViewControllerAnimated:YES completion:nil];
             });
         }];
@@ -128,7 +136,23 @@ typedef enum : NSInteger {
 
 - (IBAction)done:(id)sender
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self validateTextFieldContent];
+}
+
+-(void)validateTextFieldContent
+{
+    if (_isEditing)
+    {
+        [UIAlertView showWithTitle:@"Are You Sure?" message:@"Leave the Screen with Unsaved Changes?" cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"Yes"] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+            if (buttonIndex == 1) {
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }
+        }];
+    }
+    else
+    {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 @end

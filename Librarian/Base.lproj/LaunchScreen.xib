@@ -20,34 +20,32 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="Rs2-ix-GEz">
-                    <rect key="frame" x="80" y="100" width="160" height="160"/>
+                    <rect key="frame" x="80" y="204" width="160" height="160"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="160" id="aCb-Ej-YEN"/>
-                        <constraint firstAttribute="width" constant="160" id="euO-bN-l8D"/>
+                        <constraint firstAttribute="width" constant="160" id="Fxo-ao-MkF"/>
+                        <constraint firstAttribute="height" constant="160" id="gXZ-II-6Gg"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Librarian" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="kId-c2-rCX">
-                    <rect key="frame" x="20" y="268" width="281" height="47"/>
+                    <rect key="frame" x="20" y="372" width="281" height="47"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="47" id="GG2-Fm-vEK"/>
+                        <constraint firstAttribute="height" constant="47" id="d43-6q-c5H"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="28"/>
+                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="26"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="kId-c2-rCX" firstAttribute="top" secondItem="Rs2-ix-GEz" secondAttribute="bottom" constant="8" id="2kV-wI-9t3"/>
-                <constraint firstItem="kId-c2-rCX" firstAttribute="top" secondItem="Rs2-ix-GEz" secondAttribute="bottom" constant="8" id="4L7-Zg-pCO"/>
+                <constraint firstAttribute="trailing" secondItem="kId-c2-rCX" secondAttribute="trailing" constant="19" id="7KH-nx-Y6c"/>
                 <constraint firstItem="8ie-xW-0ye" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="A53-YX-mE8"/>
-                <constraint firstAttribute="centerX" secondItem="kId-c2-rCX" secondAttribute="centerX" id="Jkz-CN-paI"/>
-                <constraint firstAttribute="centerX" secondItem="Rs2-ix-GEz" secondAttribute="centerX" id="Mzr-oP-wdT"/>
-                <constraint firstItem="kId-c2-rCX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="UWV-h8-Bih"/>
+                <constraint firstAttribute="centerY" secondItem="Rs2-ix-GEz" secondAttribute="centerY" id="JOU-Bi-2Nq"/>
+                <constraint firstItem="kId-c2-rCX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="KlA-TC-ryS"/>
+                <constraint firstAttribute="centerX" secondItem="Rs2-ix-GEz" secondAttribute="centerX" id="bQk-bS-nJI"/>
                 <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="16" id="bYP-a8-mlp"/>
                 <constraint firstAttribute="trailing" secondItem="8ie-xW-0ye" secondAttribute="trailing" constant="19" id="hBx-oB-NpA"/>
-                <constraint firstAttribute="trailing" secondItem="kId-c2-rCX" secondAttribute="trailing" constant="19" id="hCL-Tm-e5x"/>
-                <constraint firstItem="Rs2-ix-GEz" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="100" id="yoe-hl-ovo"/>
+                <constraint firstItem="kId-c2-rCX" firstAttribute="top" secondItem="Rs2-ix-GEz" secondAttribute="bottom" constant="8" id="jFW-oE-11o"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
