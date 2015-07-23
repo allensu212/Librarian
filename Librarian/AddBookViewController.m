@@ -19,7 +19,7 @@ typedef enum : NSInteger {
     INFO_BOOK_CATEGORIES = 3,
 } NewBookInfoType;
 
-@interface AddBookViewController () <UITextFieldDelegate, UIAlertViewDelegate>
+@interface AddBookViewController () <UITextFieldDelegate>
 @property (nonatomic, strong) Book *book;
 @end
 
@@ -39,9 +39,6 @@ typedef enum : NSInteger {
 -(void)viewDidLoad{
     [super viewDidLoad];
     [self configureNav];
-    
-    //merge to fetchDataInTable
-
 }
 
 -(void)configureNav{
@@ -119,7 +116,11 @@ typedef enum : NSInteger {
     }
     else
     {
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Oops" message:@"Please enter Book Title and Author" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Oops"
+                                                           message:@"Please enter Book Title and Author"
+                                                          delegate:nil
+                                                 cancelButtonTitle:@"OK"
+                                                 otherButtonTitles:nil];
         [alertView show];
     }
 }

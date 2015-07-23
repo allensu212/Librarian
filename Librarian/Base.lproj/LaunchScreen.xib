@@ -12,20 +12,20 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright (c) 2015 allensu. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8ie-xW-0ye">
-                    <rect key="frame" x="20" y="525" width="281" height="23"/>
+                    <rect key="frame" x="20" y="500" width="281" height="48"/>
                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="Rs2-ix-GEz">
-                    <rect key="frame" x="40" y="100" width="240" height="240"/>
+                    <rect key="frame" x="70" y="100" width="180" height="180"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="240" id="aCb-Ej-YEN"/>
-                        <constraint firstAttribute="width" constant="240" id="euO-bN-l8D"/>
+                        <constraint firstAttribute="height" constant="180" id="aCb-Ej-YEN"/>
+                        <constraint firstAttribute="width" constant="180" id="euO-bN-l8D"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Librarian" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="kId-c2-rCX">
-                    <rect key="frame" x="20" y="348" width="281" height="47"/>
+                    <rect key="frame" x="20" y="288" width="281" height="47"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="47" id="GG2-Fm-vEK"/>
                     </constraints>
@@ -42,7 +42,7 @@
                 <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="20" id="Kzo-t9-V3l"/>
                 <constraint firstItem="8ie-xW-0ye" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="MfP-vx-nX0"/>
                 <constraint firstAttribute="centerX" secondItem="Rs2-ix-GEz" secondAttribute="centerX" id="Mzr-oP-wdT"/>
-                <constraint firstItem="8ie-xW-0ye" firstAttribute="top" secondItem="kId-c2-rCX" secondAttribute="bottom" constant="130" id="U7j-3U-1Mx"/>
+                <constraint firstItem="8ie-xW-0ye" firstAttribute="top" secondItem="kId-c2-rCX" secondAttribute="bottom" constant="165" id="U7j-3U-1Mx"/>
                 <constraint firstItem="kId-c2-rCX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="UWV-h8-Bih"/>
                 <constraint firstAttribute="centerX" secondItem="8ie-xW-0ye" secondAttribute="centerX" id="ZEH-qu-HZ9"/>
                 <constraint firstAttribute="trailing" secondItem="kId-c2-rCX" secondAttribute="trailing" constant="19" id="hCL-Tm-e5x"/>

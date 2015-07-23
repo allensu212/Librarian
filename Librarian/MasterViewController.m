@@ -12,23 +12,14 @@
 #import "NetworkManager.h"
 #import "NavigationBarLabel.h"
 #import "Constants.h"
+#import "UIAlertView+Blocks.h"
 
-@interface MasterViewController () <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
+@interface MasterViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *booksDataArray;
-@property (nonatomic, strong) NetworkManager *networkManager;
 @end
 
 @implementation MasterViewController
-
-#pragma mark - LazyInstantiation
-
--(NetworkManager *)networkManager{
-    if (!_networkManager) {
-        _networkManager = [NetworkManager sharedManager];
-    }
-    return _networkManager;
-}
 
 #pragma mark - LifeCycle
 
@@ -52,7 +43,7 @@
 
 -(void)fetchBooks{
     
-    [self.networkManager fetchBooksWithCompletionBlock:^(NSArray *dataArray) {
+    [[NetworkManager sharedManager] fetchBooksWithCompletionBlock:^(NSArray *dataArray) {
         self.booksDataArray = [NSMutableArray arrayWithArray:dataArray];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
@@ -65,27 +56,8 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     NSDictionary *selectedBookDict = self.booksDataArray[indexPath.row];
-    
-    
     BookTableViewCell *bookCell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER forIndexPath:indexPath];
-    
-    if (bookCell.coverImageView.image == nil) {
-        bookCell.spinner.hidden = NO;
-        [bookCell.spinner startAnimating];
-    }
-    
-    [self.networkManager fetchBookCoverWithBookTitle:selectedBookDict[@"title"] withCompletionBlock:^(NSString *coverURL, NSDictionary *jsonDict) {
-        
-        NSURL * imageURL = [NSURL URLWithString:coverURL];
-        NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            bookCell.coverImageView.image = [UIImage imageWithData:imageData];;
-            [bookCell.spinner stopAnimating];
-            bookCell.spinner.hidden = YES;
-            [bookCell configureCellWithDict:selectedBookDict];
-        });
-    }];
+    [bookCell configureCellWithDict:selectedBookDict];
     
     return bookCell;
 }
@@ -100,7 +72,7 @@
         
         NSDictionary *selectedBookDict = self.booksDataArray[indexPath.row];
         
-        [self.networkManager deleteBook:selectedBookDict[@"url"] withCompletionBlock:^{
+        [[NetworkManager sharedManager] deleteBook:selectedBookDict[@"url"] withCompletionBlock:^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 [self.booksDataArray removeObjectAtIndex:indexPath.row];
@@ -120,17 +92,9 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-#pragma mark - UIAlertViewDelegate
-
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 1) {
-        [self deleteAllBooks];
-    }
-}
-
 -(void)deleteAllBooks{
     
-    [self.networkManager deleteAllBooksWithCompletionBlock:^(NSArray *dataArray) {
+    [[NetworkManager sharedManager] deleteAllBooksWithCompletionBlock:^(NSArray *dataArray) {
         self.booksDataArray = [NSMutableArray arrayWithArray:dataArray];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
@@ -142,7 +106,15 @@
 
 - (IBAction)deleteAllBooks:(id)sender
 {
-    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Are You Sure?" message:@"Delete all books at once?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes", nil];
+    UIAlertView *alertView = [UIAlertView showWithTitle:@"Are You Sure?"
+                                                message:@"Delete All Books at Once?"
+                                      cancelButtonTitle:@"Cencel" otherButtonTitles:@[@"Yes"]
+                                               tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+        if (buttonIndex == 1) {
+            [self deleteAllBooks];
+        }
+    }];
+
     [alertView show];
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE4336891B6082580053BCCD /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = BE4336881B6082580053BCCD /* UIAlertView+Blocks.m */; };
 		BE5901BF1B5B4CA2008206CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5901BE1B5B4CA2008206CC /* main.m */; };
 		BE5901C21B5B4CA2008206CC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5901C11B5B4CA2008206CC /* AppDelegate.m */; };
 		BE5901C51B5B4CA2008206CC /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5901C41B5B4CA2008206CC /* MasterViewController.m */; };
@@ -37,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BE4336871B6082580053BCCD /* UIAlertView+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Blocks.h"; sourceTree = "<group>"; };
+		BE4336881B6082580053BCCD /* UIAlertView+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Blocks.m"; sourceTree = "<group>"; };
 		BE5901B91B5B4CA2008206CC /* Librarian.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Librarian.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE5901BD1B5B4CA2008206CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE5901BE1B5B4CA2008206CC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -169,6 +172,8 @@
 			children = (
 				BE5901E21B5B4EC9008206CC /* BookTableViewCell.h */,
 				BE5901E31B5B4EC9008206CC /* BookTableViewCell.m */,
+				BE4336871B6082580053BCCD /* UIAlertView+Blocks.h */,
+				BE4336881B6082580053BCCD /* UIAlertView+Blocks.m */,
 				BEC2CD821B5C077C009B7EE5 /* UICustomAlertView.h */,
 				BEC2CD831B5C077C009B7EE5 /* UICustomAlertView.m */,
 				BE8022791B5C331600BFEFE1 /* SVProgressHUD.h */,
@@ -300,6 +305,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE4336891B6082580053BCCD /* UIAlertView+Blocks.m in Sources */,
 				BE8022781B5C1E3400BFEFE1 /* Book.m in Sources */,
 				BE5901EA1B5B4FE6008206CC /* Constants.m in Sources */,
 				BE5901E41B5B4EC9008206CC /* BookTableViewCell.m in Sources */,
@@ -438,7 +444,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Librarian/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -449,7 +455,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Librarian/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

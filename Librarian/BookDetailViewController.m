@@ -8,12 +8,12 @@
 
 #import "BookDetailViewController.h"
 #import "NetworkManager.h"
-#import "UICustomAlertView.h"
 #import "Constants.h"
 #import "NavigationBarLabel.h"
+#import "UIAlertView+Blocks.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface BookDetailViewController () <UIAlertViewDelegate>
+@interface BookDetailViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *bookTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 @property (weak, nonatomic) IBOutlet UITextView *bookInfoTextView;
@@ -79,15 +79,6 @@
     }];
 }
 
-#pragma mark - UIAlertViewDelegate
-
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 1) {
-        NSString *username = [[alertView textFieldAtIndex:0]text];
-        [self updateCheckOutInfoWithUsername:username];
-    }
-}
-
 #pragma mark - IBAction
 
 -(void)showShareSheet{
@@ -100,7 +91,19 @@
 }
 
 - (IBAction)checkout:(id)sender {
-    UICustomAlertView *alertView = [[UICustomAlertView alloc]initWithTitle:@"Hi Visiter" message:@"Please enter your name" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles: @"Checkout", nil];
+    
+    UIAlertView *alertView = [UIAlertView showWithTitle:@"Hi Visiter"
+                                                message:@"Please enter your name"
+                                                  style:UIAlertViewStylePlainTextInput
+                                      cancelButtonTitle:@"Cancel"
+                                      otherButtonTitles:@[@"Checkout"]
+                                               tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+        if (buttonIndex == 1) {
+            NSString *username = [[alertView textFieldAtIndex:0]text];
+            [self updateCheckOutInfoWithUsername:username];
+        }
+    }];
+    
     [alertView show];
 }
 
