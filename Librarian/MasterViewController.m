@@ -65,6 +65,8 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     NSDictionary *selectedBookDict = self.booksDataArray[indexPath.row];
+    
+    
     BookTableViewCell *bookCell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER forIndexPath:indexPath];
     
     if (bookCell.coverImageView.image == nil) {
