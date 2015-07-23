@@ -7,6 +7,22 @@
 
 ### 2. View Classes
 
+- BookTableViewCell: 
+
+gluing data with UI in -(void)configureCellWithDict:(NSDictionary *)dict
+
+- UIAlertView + Blocks:
+
+3rd Party API for presenting UIAlertView without implementing delegate method in every controller
+
+- SVDProgressHUD:
+
+3rd Party API for presenting Hud view with better user experience
+
+- NavigationBarLabel:
+
+Customize title text on UINavigationBar
+
 ### 3. Controller Classes
 
 - MasterViewController: 
@@ -26,3 +42,10 @@
 (2) Update Checkout information with NetworkManager singleton object
 
 (3) Enable Social Media Sharing by presenting UIActivityViewController
+
+- AddBookViewController:
+
+(1) Serve as delegate of UITextField for saving information into Book object, and verifying text content in delegate methods
+
+(2) Use enum for identifying four text fields to increase code readibility
+
