@@ -66,7 +66,22 @@
     
     NSDictionary *selectedBookDict = self.booksDataArray[indexPath.row];
     BookTableViewCell *bookCell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER forIndexPath:indexPath];
-    [bookCell configureCellWithDict:selectedBookDict];
+    
+    bookCell.spinner.hidden = NO;
+    [bookCell.spinner startAnimating];
+    
+    [self.networkManager fetchBookCoverWithBookTitle:selectedBookDict[@"title"] withCompletionBlock:^(NSString *coverURL, NSDictionary *jsonDict) {
+        
+        NSURL * imageURL = [NSURL URLWithString:coverURL];
+        NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            bookCell.coverImageView.image = [UIImage imageWithData:imageData];;
+            [bookCell.spinner stopAnimating];
+            bookCell.spinner.hidden = YES;
+            [bookCell configureCellWithDict:selectedBookDict];
+        });
+    }];
     
     return bookCell;
 }

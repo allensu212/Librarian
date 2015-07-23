@@ -142,6 +142,26 @@
     [dataTask resume];
 }
 
+-(void)fetchBookCoverWithBookTitle:(NSString *)title withCompletionBlock:(FetchBookCoverCompletionBlock)callback{
+    
+    NSString *escapedText = [title stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@term=%@", ITUNES_WEB_SERVICE, escapedText]];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSURLRequest *request = [[NSURLRequest alloc]initWithURL:url];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (!error) {
+            
+            NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+            NSArray *resultsArray = jsonDict[@"results"];
+            NSString *coverString = [self convertArtWorkStringWithArray:resultsArray];
+            callback(coverString, jsonDict);
+        }
+    }];
+    
+    [dataTask resume];
+}
+
 -(NSString *)convertArtWorkStringWithArray:(NSArray *)results
 {
     NSMutableArray *tempArray = [[NSMutableArray alloc]init];

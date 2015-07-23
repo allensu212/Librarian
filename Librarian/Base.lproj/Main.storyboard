@@ -28,27 +28,30 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jii-4p-ztO">
-                                                    <rect key="frame" x="32" y="8" width="248" height="21"/>
+                                                    <rect key="frame" x="64" y="8" width="248" height="21"/>
                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
                                                     <color key="textColor" red="0.34901960780000002" green="0.40000000000000002" blue="0.68235294120000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VHE-k5-6ra">
+                                                    <rect key="frame" x="8" y="8" width="48" height="48"/>
+                                                </imageView>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="4uP-KZ-cCc">
+                                                    <rect key="frame" x="22" y="22" width="20" height="20"/>
+                                                </activityIndicatorView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ww5-Fq-n93">
-                                                    <rect key="frame" x="32" y="28" width="248" height="21"/>
+                                                    <rect key="frame" x="64" y="35" width="248" height="21"/>
                                                     <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="13"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qSX-g6-t0D" userLabel="dotView">
-                                                    <rect key="frame" x="8" y="15" width="10" height="10"/>
-                                                    <color key="backgroundColor" red="0.94117647059999998" green="0.5450980392" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                </view>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="authorLabel" destination="Ww5-Fq-n93" id="VRT-7G-g7x"/>
                                             <outlet property="bookTitleLabel" destination="jii-4p-ztO" id="Wou-Ek-LjB"/>
-                                            <outlet property="dotView" destination="qSX-g6-t0D" id="ieY-uT-3bJ"/>
+                                            <outlet property="coverImageView" destination="VHE-k5-6ra" id="K1S-TS-vAA"/>
+                                            <outlet property="spinner" destination="4uP-KZ-cCc" id="K1X-qE-9ut"/>
                                             <segue destination="gyC-s7-6fE" kind="show" identifier="showBookDetail" id="KtA-Es-5fZ"/>
                                         </connections>
                                     </tableViewCell>
