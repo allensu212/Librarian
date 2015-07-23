@@ -67,8 +67,10 @@
     NSDictionary *selectedBookDict = self.booksDataArray[indexPath.row];
     BookTableViewCell *bookCell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER forIndexPath:indexPath];
     
-    bookCell.spinner.hidden = NO;
-    [bookCell.spinner startAnimating];
+    if (bookCell.coverImageView.image == nil) {
+        bookCell.spinner.hidden = NO;
+        [bookCell.spinner startAnimating];
+    }
     
     [self.networkManager fetchBookCoverWithBookTitle:selectedBookDict[@"title"] withCompletionBlock:^(NSString *coverURL, NSDictionary *jsonDict) {
         
