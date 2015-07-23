@@ -83,10 +83,8 @@
 
 -(void)showShareSheet{
     
-    NSMutableArray *activityItems = [[NSMutableArray alloc]initWithObjects:UIActivityTypePostToFacebook, UIActivityTypePostToTwitter, nil];
-    
+    NSMutableArray *activityItems = [[NSMutableArray alloc]initWithObjects:@"This Book is Awesome!!", nil];
     UIActivityViewController *shareController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
-    
     [self presentViewController:shareController animated:YES completion:nil];
 }
 
