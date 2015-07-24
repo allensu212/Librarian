@@ -119,7 +119,6 @@
     
     NSURLSessionUploadTask *uploadTask = [session uploadTaskWithRequest:theRequest fromData:userData completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (!error) {
-            
             NSDictionary *dataDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             callback(dataDict);
         }
