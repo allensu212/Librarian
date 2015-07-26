@@ -13,8 +13,11 @@
 #import "NavigationBarLabel.h"
 #import "Constants.h"
 #import "UIAlertView+Blocks.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface MasterViewController () <UITableViewDataSource, UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UIButton *addBookButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *booksDataArray;
 @end
@@ -25,7 +28,7 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    [self configureNav];
+    [self configureUI];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -33,9 +36,28 @@
     [self fetchBooks];
 }
 
--(void)configureNav{
+#pragma mark - UIUpdate
+
+-(void)configureUI{
     NavigationBarLabel *label = [[NavigationBarLabel alloc]initWithText:@"Books"];
     self.navigationItem.titleView = label;
+    self.navigationItem.rightBarButtonItem = [self editButtonItem];
+    
+    self.addBookButton.layer.cornerRadius = self.addBookButton.frame.size.width / 2;
+    self.addBookButton.layer.shadowColor = [[UIColor darkGrayColor]CGColor];
+    self.addBookButton.layer.shadowOpacity = 0.7f;
+    self.addBookButton.layer.shadowOffset = CGSizeMake(0.5f, 0.5f);
+    self.addBookButton.layer.shadowRadius = 4.0f;
+    self.addBookButton.layer.shouldRasterize = YES;
+}
+
+-(void)setEditing:(BOOL)editing animated:(BOOL)animated {
+    [super setEditing:editing animated:animated];
+    if (editing) {
+        [self.tableView setEditing:YES animated:YES];
+    }else{
+        [self.tableView setEditing:NO animated:YES];
+    }
 }
 
 #pragma mark - Networking
