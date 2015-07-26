@@ -8,6 +8,7 @@
 
 #import "NetworkManager.h"
 #import "Constants.h"
+#import "UIAlertView+Blocks.h"
 #import "Book.h"
 
 @implementation NetworkManager
@@ -39,6 +40,11 @@
             
             NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
             callback(jsonArray);
+        }else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIAlertView *alertView = [UIAlertView showWithTitle:@"Error" message:@"Could Not Complete the Operation" cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:nil];
+                [alertView show];
+            });
         }
     }];
     [dataTask resume];
@@ -72,10 +78,13 @@
     
     NSURLSessionUploadTask *uploadTask = [session uploadTaskWithRequest:request fromData:userData completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (!error) {
-            
             NSDictionary *dataDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             NSLog(@"POSTED DICT: %@", dataDict);
             callback();
+        }else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                callback();
+            });
         }
     }];
     
@@ -96,6 +105,11 @@
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:theRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (!error) {
             callback();
+        }else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIAlertView *alertView = [UIAlertView showWithTitle:@"Error" message:@"Could Not Complete the Operation" cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:nil];
+                [alertView show];
+            });
         }
     }];
     [dataTask resume];
@@ -121,6 +135,11 @@
         if (!error) {
             NSDictionary *dataDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             callback(dataDict);
+        }else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIAlertView *alertView = [UIAlertView showWithTitle:@"Error" message:@"Could Not Complete the Operation" cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:nil];
+                [alertView show];
+            });
         }
     }];
     [uploadTask resume];
@@ -135,6 +154,11 @@
         if (!error) {
             NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
             callback(jsonArray);
+        }else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIAlertView *alertView = [UIAlertView showWithTitle:@"Error" message:@"Error with Fetching Books" cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:nil];
+                [alertView show];
+            });
         }
     }];
     

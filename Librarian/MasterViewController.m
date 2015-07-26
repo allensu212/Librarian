@@ -25,7 +25,6 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    [self fetchBooks];
     [self configureNav];
 }
 
