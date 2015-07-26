@@ -165,17 +165,4 @@
     [dataTask resume];
 }
 
--(NSString *)convertArtWorkStringWithArray:(NSArray *)results
-{
-    NSMutableArray *tempArray = [[NSMutableArray alloc]init];
-    
-    for (NSDictionary *dict in results) {
-        
-        if ([dict[@"wrapperType"]isEqualToString:@"track"]) {
-            [tempArray addObject:dict[@"artworkUrl100"]];
-        }
-    }
-    return [tempArray firstObject];
-}
-
 @end
