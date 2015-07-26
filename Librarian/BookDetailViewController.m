@@ -43,6 +43,7 @@
     self.bookTitleLabel.text = dict[@"title"];
     self.authorLabel.text = dict[@"author"];
     self.bookTitleLabel.font = [UIFont fontWithName:FONT_MAIN size:20.0f];
+    self.authorLabel.font = [UIFont fontWithName:FONT_MAIN size:16.0f];
     [self configureTextViewUIFromDict:dict];
 }
 
