@@ -22,6 +22,11 @@ typedef enum : NSInteger {
 
 @interface AddBookViewController () <UITextFieldDelegate>
 @property (nonatomic, strong) Book *book;
+@property (weak, nonatomic) IBOutlet UIButton *actionButton;
+@property (weak, nonatomic) IBOutlet UITextField *bookTitleTextField;
+@property (weak, nonatomic) IBOutlet UITextField *authorTextField;
+@property (weak, nonatomic) IBOutlet UITextField *publisherTextField;
+@property (weak, nonatomic) IBOutlet UITextField *categoriesTextField;
 @end
 
 @implementation AddBookViewController{
@@ -46,8 +51,28 @@ typedef enum : NSInteger {
 }
 
 -(void)configureNav{
-    NavigationBarLabel *label = [[NavigationBarLabel alloc]initWithText:@"Add Book"];
+    
+    NavigationBarLabel *label;
+    
+    if (self.updatingBookInfo) {
+        label = [[NavigationBarLabel alloc]initWithText:@"Edit Book"];
+        [self.actionButton setTitle:@"Update" forState:UIControlStateNormal];
+        
+        [self fillOutTextFieldsWithBookDict:self.currentBookDict];
+
+    }else {
+        label = [[NavigationBarLabel alloc]initWithText:@"Add Book"];
+        [self.actionButton setTitle:@"Submit" forState:UIControlStateNormal];
+    }
+    
     self.navigationItem.titleView = label;
+}
+
+-(void)fillOutTextFieldsWithBookDict:(NSDictionary *)bookDict{
+    self.bookTitleTextField.text = bookDict[@"title"];
+    self.authorTextField.text = bookDict[@"author"];
+    self.publisherTextField.text = bookDict[@"publisher"];
+    self.categoriesTextField.text = bookDict[@"categories"];
 }
 
 #pragma mark - UITextFieldDelegate

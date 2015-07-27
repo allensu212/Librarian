@@ -11,11 +11,13 @@
 #import "Constants.h"
 #import "NavigationBarLabel.h"
 #import "UIAlertView+Blocks.h"
+#import "AddBookViewController.h"
 
-@interface BookDetailViewController ()
+@interface BookDetailViewController () <AddBookViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *bookTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 @property (weak, nonatomic) IBOutlet UITextView *bookInfoTextView;
+@property (nonatomic, strong) AddBookViewController *addBookController;
 @end
 
 @implementation BookDetailViewController
@@ -104,6 +106,30 @@
     }];
     
     [alertView show];
+}
+
+#pragma mark - Navigation
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if ([segue.identifier isEqualToString:@"showEdit"]) {
+        if ([segue.destinationViewController isKindOfClass:[UINavigationController class]]) {
+            
+            UINavigationController *navController = segue.destinationViewController;
+            self.addBookController = (AddBookViewController *)navController.topViewController;
+            self.addBookController.updatingBookInfo = YES;
+            self.addBookController.currentBookDict = self.bookData;
+            self.addBookController.delegate = self;
+        }
+    }
+}
+
+#pragma mark - AddBookViewControllerDelegate
+
+-(void)userDidUpdateBookInformationWithDict:(NSDictionary *)bookDict{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self updateUIWithDict:bookDict];
+    });
 }
 
 @end

@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class AddBookViewController;
+
+@protocol AddBookViewControllerDelegate <NSObject>
+
+-(void)userDidUpdateBookInformationWithDict:(NSDictionary *)bookDict;
+
+@end
+
 @interface AddBookViewController : UIViewController
+@property (nonatomic, assign) BOOL updatingBookInfo;
+@property (nonatomic, strong) NSDictionary *currentBookDict;
+@property (nonatomic, weak) id<AddBookViewControllerDelegate>delegate;
 
 @end
