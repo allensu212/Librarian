@@ -24,9 +24,7 @@
 @property (nonatomic, strong) NSMutableArray *booksDataArray;
 @end
 
-@implementation MasterViewController{
-    BOOL _isLoading;
-}
+@implementation MasterViewController
 
 #pragma mark - LifeCycle
 
@@ -53,9 +51,6 @@
     self.addBookButton.layer.shadowOffset = CGSizeMake(0.5f, 0.5f);
     self.addBookButton.layer.shadowRadius = 4.0f;
     self.addBookButton.layer.shouldRasterize = YES;
-    
-    UINib *loadingCellNib = [UINib nibWithNibName:LoadingCellIdentifier bundle:nil];
-    [self.tableView registerNib:loadingCellNib forCellReuseIdentifier:LoadingCellIdentifier];
 }
 
 -(void)setEditing:(BOOL)editing animated:(BOOL)animated {
@@ -74,43 +69,24 @@
     [[NetworkManager sharedManager]fetchBooksWithCompletionBlock:^(NSMutableArray *booksArray) {
         [self.booksDataArray removeAllObjects];
         self.booksDataArray = booksArray;
-        _isLoading = NO;
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });
     }];
-    
-    _isLoading = YES;
 }
 
 #pragma mark - UITableViewDataSource
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    Book *selectedBook = self.booksDataArray[indexPath.row];
+    BookTableViewCell *bookCell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER forIndexPath:indexPath];
+    [bookCell configureCellWithBook:selectedBook];
     
-    if (_isLoading) {
-        
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:LoadingCellIdentifier];
-        UIActivityIndicatorView *spinner = (UIActivityIndicatorView *)[cell viewWithTag:100];
-        cell.userInteractionEnabled = NO;
-        [spinner startAnimating];
-        return cell;
-        
-    }else{
-        Book *selectedBook = self.booksDataArray[indexPath.row];
-        BookTableViewCell *bookCell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER forIndexPath:indexPath];
-        [bookCell configureCellWithBook:selectedBook];
-        
-        return bookCell;
-    }
+    return bookCell;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
-    if (_isLoading) {
-        return 1;
-    }else{
-        return [self.booksDataArray count];
-    }
+    return [self.booksDataArray count];
 }
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -132,12 +108,7 @@
 #pragma mark - UITableViewDelegate
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if (_isLoading) {
-        return self.view.frame.size.height;
-    }else{
-        return CELL_HEIGHT;
-    }
+    return CELL_HEIGHT;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
