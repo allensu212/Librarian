@@ -12,6 +12,7 @@
 #define CELL_IDENTIFIER @"bookCell"
 #define SEGUE_DETAIL_IDENTIFIER @"showBookDetail"
 #define SEGUE_ADD_BOOK_IDENTIFIER @"addBook"
+#define SEGUE_SHOW_EDIT_IDENTIFIER @"showEdit"
 #define FONT_MAIN @"Futura"
 #define ENDPOINT_URL @"http://prolific-interview.herokuapp.com/5568cde6487d680009cf2624"
 #define ITUNES_WEB_SERVICE @"https://itunes.apple.com/search?"

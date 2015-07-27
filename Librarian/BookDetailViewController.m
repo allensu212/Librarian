@@ -112,14 +112,13 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
-    if ([segue.identifier isEqualToString:@"showEdit"]) {
+    if ([segue.identifier isEqualToString:SEGUE_SHOW_EDIT_IDENTIFIER]) {
         if ([segue.destinationViewController isKindOfClass:[UINavigationController class]]) {
             
             UINavigationController *navController = segue.destinationViewController;
             self.addBookController = (AddBookViewController *)navController.topViewController;
             self.addBookController.updatingBookInfo = YES;
             self.addBookController.currentBook = self.bookToShow;
-            
             self.addBookController.delegate = self;
         }
     }
@@ -128,7 +127,6 @@
 #pragma mark - AddBookViewControllerDelegate
 
 -(void)userDidUpdateBookInformationWithDict:(Book *)book{
-    self.bookToShow = book;
     [self updateUIWithBook:book];
 }
 
