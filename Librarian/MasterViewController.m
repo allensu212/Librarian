@@ -56,7 +56,6 @@
     
     UINib *loadingCellNib = [UINib nibWithNibName:LoadingCellIdentifier bundle:nil];
     [self.tableView registerNib:loadingCellNib forCellReuseIdentifier:LoadingCellIdentifier];
-    _isLoading = YES;
 }
 
 -(void)setEditing:(BOOL)editing animated:(BOOL)animated {
@@ -80,6 +79,8 @@
             [self.tableView reloadData];
         });
     }];
+    
+    _isLoading = YES;
 }
 
 #pragma mark - UITableViewDataSource
