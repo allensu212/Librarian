@@ -16,6 +16,7 @@
 #define FONT_MAIN @"Futura"
 #define ENDPOINT_URL @"http://prolific-interview.herokuapp.com/5568cde6487d680009cf2624"
 #define ITUNES_WEB_SERVICE @"https://itunes.apple.com/search?"
+static NSString * const LoadingCellIdentifier = @"LoadingCell";
 
 @interface Constants : NSObject
 

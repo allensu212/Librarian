@@ -22,6 +22,7 @@
 		BE8022751B5C1A0200BFEFE1 /* AddBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8022741B5C1A0200BFEFE1 /* AddBookViewController.m */; };
 		BE8022781B5C1E3400BFEFE1 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8022771B5C1E3400BFEFE1 /* Book.m */; };
 		BE80227B1B5C331600BFEFE1 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = BE80227A1B5C331600BFEFE1 /* SVProgressHUD.m */; };
+		BEAA48D11B65DFAB00091924 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEAA48D01B65DFAB00091924 /* LoadingCell.xib */; };
 		BED019611B5C94D20000E08E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED019601B5C94D20000E08E /* QuartzCore.framework */; };
 		BEF1D2D21B5F334600D6A05C /* NavigationBarLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF1D2D11B5F334600D6A05C /* NavigationBarLabel.m */; };
 /* End PBXBuildFile section */
@@ -66,6 +67,7 @@
 		BE8022771B5C1E3400BFEFE1 /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
 		BE8022791B5C331600BFEFE1 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		BE80227A1B5C331600BFEFE1 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		BEAA48D01B65DFAB00091924 /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		BED019601B5C94D20000E08E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BEF1D2D01B5F334600D6A05C /* NavigationBarLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationBarLabel.h; sourceTree = "<group>"; };
 		BEF1D2D11B5F334600D6A05C /* NavigationBarLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationBarLabel.m; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 			children = (
 				BE5901E21B5B4EC9008206CC /* BookTableViewCell.h */,
 				BE5901E31B5B4EC9008206CC /* BookTableViewCell.m */,
+				BEAA48D01B65DFAB00091924 /* LoadingCell.xib */,
 				BE4336871B6082580053BCCD /* UIAlertView+Blocks.h */,
 				BE4336881B6082580053BCCD /* UIAlertView+Blocks.m */,
 				BE8022791B5C331600BFEFE1 /* SVProgressHUD.h */,
@@ -282,6 +285,7 @@
 			files = (
 				BE5901C81B5B4CA2008206CC /* Main.storyboard in Resources */,
 				BE5901CD1B5B4CA2008206CC /* LaunchScreen.xib in Resources */,
+				BEAA48D11B65DFAB00091924 /* LoadingCell.xib in Resources */,
 				BE5901CA1B5B4CA2008206CC /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
