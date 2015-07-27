@@ -10,6 +10,7 @@
 
 typedef void(^FetchBooksCompletionBlock)(NSArray *dataArray);
 typedef void(^UpdateCheckOutInfoCompletionBlock)(NSDictionary *dataDict);
+typedef void(^UpdateBookInfoCompletionBlock)(NSDictionary *dataDict);
 typedef void(^AddBookCompletionBlock)(void);
 typedef void(^DeleteBookCompletionBlock)(void);
 typedef void(^DeleteCollectionCompletionBlock)(NSArray *dataArray);
@@ -22,6 +23,7 @@ typedef void(^DeleteCollectionCompletionBlock)(NSArray *dataArray);
 
 -(void)fetchBooksWithCompletionBlock:(FetchBooksCompletionBlock)callback;
 -(void)updateCheckOutInfoWithUsername:(NSString *)username bookInfo:(NSString *)bookURL completionBlock:(UpdateCheckOutInfoCompletionBlock)callback;
+-(void)updateBookInfo:(Book *)book withCompletionBlock:(UpdateBookInfoCompletionBlock)callback;
 -(void)addNewBook:(Book *)newBook withCompletionBlock:(AddBookCompletionBlock)callback;
 -(void)deleteBook:(NSString *)bookURL withCompletionBlock:(DeleteBookCompletionBlock)callback;
 -(void)deleteAllBooksWithCompletionBlock:(DeleteCollectionCompletionBlock)callback;

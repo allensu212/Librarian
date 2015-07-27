@@ -38,6 +38,7 @@ typedef enum : NSInteger {
 -(Book *)book{
     if (!_book) {
         _book = [[Book alloc]init];
+        _book.url = self.currentBookDict[@"url"];
     }
     return _book;
 }
@@ -73,6 +74,10 @@ typedef enum : NSInteger {
     self.authorTextField.text = bookDict[@"author"];
     self.publisherTextField.text = bookDict[@"publisher"];
     self.categoriesTextField.text = bookDict[@"categories"];
+    self.book.bookTitle = self.bookTitleTextField.text;
+    self.book.author = self.authorTextField.text;
+    self.book.publisher = self.publisherTextField.text;
+    self.book.categories = self.categoriesTextField.text;
 }
 
 #pragma mark - UITextFieldDelegate
@@ -133,6 +138,15 @@ typedef enum : NSInteger {
 
 - (IBAction)submitNewBook:(id)sender
 {
+    if (self.updatingBookInfo) {
+        [self updateBookInformation];
+    }else {
+        [self addNewBook];
+    }
+}
+
+-(void)addNewBook{
+    
     if (self.book.bookTitle != nil && self.book.author != nil)
     {
         NetworkManager *networkManager = [NetworkManager sharedManager];
@@ -157,6 +171,21 @@ typedef enum : NSInteger {
                                                  otherButtonTitles:nil];
         [alertView show];
     }
+}
+
+-(void)updateBookInformation{
+    
+    [[NetworkManager sharedManager]updateBookInfo:self.book withCompletionBlock:^(NSDictionary *dataDict) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.delegate userDidUpdateBookInformationWithDict:dataDict];
+            [SVProgressHUD dismiss];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        });
+    }];
+    
+    [SVProgressHUD setBackgroundColor:[UIColor whiteColor]];
+    [SVProgressHUD showWithStatus:@"Updating" maskType:SVProgressHUDMaskTypeGradient];
 }
 
 - (IBAction)done:(id)sender

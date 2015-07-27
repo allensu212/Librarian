@@ -13,6 +13,8 @@
 
 @implementation NetworkManager
 
+#pragma mark - Singleton
+
 +(NetworkManager *)sharedManager{
     
     static NetworkManager *_sharedManager = nil;
@@ -22,6 +24,30 @@
     });
     return _sharedManager;
 }
+
+#pragma mark - Fetch
+
+-(void)fetchBooksWithCompletionBlock:(FetchBooksCompletionBlock)callback{
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/books", ENDPOINT_URL]];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSURLRequest *request = [[NSURLRequest alloc]initWithURL:url];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (!error) {
+            NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+            callback(jsonArray);
+        }else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIAlertView *alertView = [UIAlertView showWithTitle:@"Error" message:@"Error with Fetching Books" cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:nil];
+                [alertView show];
+            });
+        }
+    }];
+    
+    [dataTask resume];
+}
+
+#pragma mark - Delete
 
 -(void)deleteAllBooksWithCompletionBlock:(DeleteCollectionCompletionBlock)callback{
     
@@ -49,6 +75,32 @@
     }];
     [dataTask resume];
 }
+
+-(void)deleteBook:(NSString *)bookURL withCompletionBlock:(DeleteBookCompletionBlock)callback{
+    
+    NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", ENDPOINT_URL, bookURL]];
+    NSMutableURLRequest *theRequest = [[NSMutableURLRequest alloc]initWithURL:theURL];
+    
+    [theRequest setHTTPMethod:@"DELETE"];
+    [theRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
+    
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:theRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (!error) {
+            callback();
+        }else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIAlertView *alertView = [UIAlertView showWithTitle:@"Error" message:@"Could Not Complete the Operation" cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:nil];
+                [alertView show];
+            });
+        }
+    }];
+    [dataTask resume];
+}
+
+#pragma mark - Add
 
 -(void)addNewBook:(Book *)newBook withCompletionBlock:(AddBookCompletionBlock)callback
 {
@@ -91,20 +143,32 @@
     [uploadTask resume];
 }
 
--(void)deleteBook:(NSString *)bookURL withCompletionBlock:(DeleteBookCompletionBlock)callback{
+#pragma mark - Update
+
+-(void)updateBookInfo:(Book *)book withCompletionBlock:(UpdateBookInfoCompletionBlock)callback{
     
-    NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", ENDPOINT_URL, bookURL]];
+    NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", ENDPOINT_URL, book.url]];
+
+    NSMutableString *dataString = [[NSMutableString alloc]init];
+    [dataString appendFormat:@"author=%@", book.author];
+    [dataString appendFormat:@"&categories=%@", book.categories];
+    [dataString appendFormat:@"&title=%@", book.bookTitle];
+    [dataString appendFormat:@"&publisher=%@", book.publisher];
+    NSData *userData = [dataString dataUsingEncoding:NSUTF8StringEncoding];
+    
     NSMutableURLRequest *theRequest = [[NSMutableURLRequest alloc]initWithURL:theURL];
     
-    [theRequest setHTTPMethod:@"DELETE"];
+    [theRequest setHTTPMethod:@"PUT"];
     [theRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [theRequest setHTTPBody:userData];
     
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
-    
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:theRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+
+    NSURLSessionUploadTask *uploadTask = [session uploadTaskWithRequest:theRequest fromData:userData completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (!error) {
-            callback();
+            NSDictionary *dataDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            callback(dataDict);
         }else {
             dispatch_async(dispatch_get_main_queue(), ^{
                 UIAlertView *alertView = [UIAlertView showWithTitle:@"Error" message:@"Could Not Complete the Operation" cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:nil];
@@ -112,7 +176,8 @@
             });
         }
     }];
-    [dataTask resume];
+    [uploadTask resume];
+    
 }
 
 -(void)updateCheckOutInfoWithUsername:(NSString *)username bookInfo:(NSString *)bookURL completionBlock:(UpdateCheckOutInfoCompletionBlock)callback{
@@ -143,26 +208,6 @@
         }
     }];
     [uploadTask resume];
-}
-
--(void)fetchBooksWithCompletionBlock:(FetchBooksCompletionBlock)callback{
-    
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/books", ENDPOINT_URL]];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    NSURLRequest *request = [[NSURLRequest alloc]initWithURL:url];
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        if (!error) {
-            NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-            callback(jsonArray);
-        }else {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                UIAlertView *alertView = [UIAlertView showWithTitle:@"Error" message:@"Error with Fetching Books" cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:nil];
-                [alertView show];
-            });
-        }
-    }];
-    
-    [dataTask resume];
 }
 
 @end

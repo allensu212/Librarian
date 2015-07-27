@@ -14,5 +14,6 @@
 @property (nonatomic, strong) NSString *author;
 @property (nonatomic, strong) NSString *publisher;
 @property (nonatomic, strong) NSString *categories;
+@property (nonatomic, strong) NSString *url;
 
 @end

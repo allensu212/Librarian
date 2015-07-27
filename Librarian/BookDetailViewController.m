@@ -127,9 +127,8 @@
 #pragma mark - AddBookViewControllerDelegate
 
 -(void)userDidUpdateBookInformationWithDict:(NSDictionary *)bookDict{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self updateUIWithDict:bookDict];
-    });
+    self.bookData = bookDict;
+    [self updateUIWithDict:bookDict];
 }
 
 @end
