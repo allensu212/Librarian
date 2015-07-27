@@ -64,8 +64,9 @@
 
 -(void)fetchBooks{
     
-    [[NetworkManager sharedManager] fetchBooksWithCompletionBlock:^(NSArray *dataArray) {
-        self.booksDataArray = [NSMutableArray arrayWithArray:dataArray];
+    [[NetworkManager sharedManager]fetchBooksWithCompletionBlock:^(NSMutableArray *booksArray) {
+        [self.booksDataArray removeAllObjects];
+        self.booksDataArray = booksArray;
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });
@@ -76,9 +77,9 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSDictionary *selectedBookDict = self.booksDataArray[indexPath.row];
+    Book *selectedBook = self.booksDataArray[indexPath.row];
     BookTableViewCell *bookCell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER forIndexPath:indexPath];
-    [bookCell configureCellWithDict:selectedBookDict];
+    [bookCell configureCellWithBook:selectedBook];
     
     return bookCell;
 }
@@ -91,9 +92,9 @@
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
-        NSDictionary *selectedBookDict = self.booksDataArray[indexPath.row];
+        Book *selectedBook = self.booksDataArray[indexPath.row];
         
-        [[NetworkManager sharedManager] deleteBook:selectedBookDict[@"url"] withCompletionBlock:^{
+        [[NetworkManager sharedManager] deleteBook:selectedBook withCompletionBlock:^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 [self.booksDataArray removeObjectAtIndex:indexPath.row];
@@ -148,9 +149,9 @@
         if ([segue.destinationViewController isKindOfClass:[BookDetailViewController class]]) {
             
             NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *)sender];
-            NSDictionary *selectedBook = self.booksDataArray[indexPath.row];
+            Book *selectedBook = self.booksDataArray[indexPath.row];
             BookDetailViewController *detailController = segue.destinationViewController;
-            detailController.bookData = selectedBook;
+            detailController.bookToShow = selectedBook;
         }
     }
 }

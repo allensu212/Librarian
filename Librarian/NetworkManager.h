@@ -8,14 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void(^FetchBooksCompletionBlock)(NSArray *dataArray);
-typedef void(^UpdateCheckOutInfoCompletionBlock)(NSDictionary *dataDict);
-typedef void(^UpdateBookInfoCompletionBlock)(NSDictionary *dataDict);
+@class Book;
+
+typedef void(^FetchBooksCompletionBlock)(NSMutableArray *booksArray);
+typedef void(^UpdateCheckOutInfoCompletionBlock)(Book *book);
+typedef void(^UpdateBookInfoCompletionBlock)(Book *updatedBook);
 typedef void(^AddBookCompletionBlock)(void);
 typedef void(^DeleteBookCompletionBlock)(void);
 typedef void(^DeleteCollectionCompletionBlock)(NSArray *dataArray);
 
-@class Book;
 
 @interface NetworkManager : NSObject
 
@@ -25,7 +26,7 @@ typedef void(^DeleteCollectionCompletionBlock)(NSArray *dataArray);
 -(void)updateCheckOutInfoWithUsername:(NSString *)username bookInfo:(NSString *)bookURL completionBlock:(UpdateCheckOutInfoCompletionBlock)callback;
 -(void)updateBookInfo:(Book *)book withCompletionBlock:(UpdateBookInfoCompletionBlock)callback;
 -(void)addNewBook:(Book *)newBook withCompletionBlock:(AddBookCompletionBlock)callback;
--(void)deleteBook:(NSString *)bookURL withCompletionBlock:(DeleteBookCompletionBlock)callback;
+-(void)deleteBook:(Book *)book withCompletionBlock:(DeleteBookCompletionBlock)callback;
 -(void)deleteAllBooksWithCompletionBlock:(DeleteCollectionCompletionBlock)callback;
 
 @end

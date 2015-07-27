@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class Book;
+
 @interface BookDetailViewController : UIViewController
-@property (nonatomic, strong) NSDictionary *bookData;
+@property (nonatomic, strong) Book *bookToShow;
 @end

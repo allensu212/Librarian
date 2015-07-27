@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class Book;
+
 @interface BookTableViewCell : UITableViewCell
 
--(void)configureCellWithDict:(NSDictionary *)dict;
+-(void)configureCellWithBook:(Book *)book;
 
 @end

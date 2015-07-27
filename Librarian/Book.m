@@ -10,4 +10,17 @@
 
 @implementation Book
 
+-(instancetype)initWithTitle:(NSString *)bookTitle author:(NSString *)author publisher:(NSString *)publisher categories:(NSString *)categories lastCheckedOut:(NSString *)lastCheckedOut user:(NSString *)user url:(NSString *)url{
+    if (self = [super init]) {
+        _bookTitle = bookTitle;
+        _author = author;
+        _publisher = publisher;
+        _categories = categories;
+        _lastCheckedOut = lastCheckedOut;
+        _lastCheckedOutBy = user;
+        _url = url;
+    }
+    return self;
+}
+
 @end

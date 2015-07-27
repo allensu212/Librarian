@@ -12,6 +12,7 @@
 #import "NavigationBarLabel.h"
 #import "UIAlertView+Blocks.h"
 #import "AddBookViewController.h"
+#import "Book.h"
 
 @interface BookDetailViewController () <AddBookViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *bookTitleLabel;
@@ -27,7 +28,7 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     [self configureNavigationBar];
-    [self updateUIWithDict:self.bookData];
+    [self updateUIWithBook:self.bookToShow];
 }
 
 #pragma mark - UISetup
@@ -40,30 +41,30 @@
     self.navigationItem.titleView = label;
 }
 
--(void)updateUIWithDict:(NSDictionary *)dict{
+-(void)updateUIWithBook:(Book *)book{
     
-    self.bookTitleLabel.text = dict[@"title"];
-    self.authorLabel.text = dict[@"author"];
+    self.bookTitleLabel.text = book.bookTitle;
+    self.authorLabel.text = book.author;
     self.bookTitleLabel.font = [UIFont fontWithName:FONT_MAIN size:20.0f];
     self.authorLabel.font = [UIFont fontWithName:FONT_MAIN size:16.0f];
-    [self configureTextViewUIFromDict:dict];
+    [self configureTextViewUIFromBook:book];
 }
 
--(void)configureTextViewUIFromDict:(NSDictionary *)dict{
+-(void)configureTextViewUIFromBook:(Book *)book{
     
-    NSString *dateString = dict[@"lastCheckedOut"];
+    NSString *dateString = book.lastCheckedOut;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyy'-'MM'-'dd  HH':'mm':'ss"];
     NSDate *date = [dateFormatter dateFromString:dateString];
     [dateFormatter setDateFormat:@"MMM d, yyyy h:mm a"];
     NSString *formattedString = [dateFormatter stringFromDate:date];
     
-    NSString *publisherString = dict[@"publisher"];
-    NSString *formattedPublisherString = [publisherString isEqualToString:@"(null)"] ? @"Deafult": dict[@"publisher"];
-    NSString *categoriesString = dict[@"categories"];
-    NSString *formattedCategoriesString = [categoriesString isEqualToString:@"(null)"] ? @"Deafult": dict[@"categories"];
+    NSString *publisherString = book.publisher;
+    NSString *formattedPublisherString = [publisherString isEqualToString:@"(null)"] ? @"Deafult": book.publisher;
+    NSString *categoriesString = book.categories;
+    NSString *formattedCategoriesString = [categoriesString isEqualToString:@"(null)"] ? @"Deafult": book.categories;
     
-    self.bookInfoTextView.text = [NSString stringWithFormat:@"Publisher: %@\nTags: %@\n\nLast Checked Out:\n%@ @ %@", formattedPublisherString, formattedCategoriesString, dict[@"lastCheckedOutBy"], formattedString];
+    self.bookInfoTextView.text = [NSString stringWithFormat:@"Publisher: %@\nTags: %@\n\nLast Checked Out:\n%@ @ %@", formattedPublisherString, formattedCategoriesString, book.lastCheckedOutBy, formattedString];
     
     self.bookInfoTextView.font = [UIFont fontWithName:FONT_MAIN size:14.0f];
     self.bookInfoTextView.textColor = [UIColor darkGrayColor];
@@ -74,10 +75,9 @@
 
 -(void)updateCheckOutInfoWithUsername:(NSString *)username{
     
-    [[NetworkManager sharedManager] updateCheckOutInfoWithUsername:username bookInfo:self.bookData[@"url"]completionBlock:^(NSDictionary *dataDict) {
-        
+    [[NetworkManager sharedManager]updateCheckOutInfoWithUsername:username bookInfo:self.bookToShow.url completionBlock:^(Book *book) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self updateUIWithDict:dataDict];
+            [self updateUIWithBook:book];
         });
     }];
 }
@@ -118,7 +118,8 @@
             UINavigationController *navController = segue.destinationViewController;
             self.addBookController = (AddBookViewController *)navController.topViewController;
             self.addBookController.updatingBookInfo = YES;
-            self.addBookController.currentBookDict = self.bookData;
+            self.addBookController.currentBook = self.bookToShow;
+            
             self.addBookController.delegate = self;
         }
     }
@@ -126,9 +127,9 @@
 
 #pragma mark - AddBookViewControllerDelegate
 
--(void)userDidUpdateBookInformationWithDict:(NSDictionary *)bookDict{
-    self.bookData = bookDict;
-    [self updateUIWithDict:bookDict];
+-(void)userDidUpdateBookInformationWithDict:(Book *)book{
+    self.bookToShow = book;
+    [self updateUIWithBook:book];
 }
 
 @end

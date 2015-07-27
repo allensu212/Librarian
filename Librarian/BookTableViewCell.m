@@ -7,6 +7,7 @@
 //
 
 #import "BookTableViewCell.h"
+#import "Book.h"
 
 @interface BookTableViewCell ()
 
@@ -17,9 +18,9 @@
 
 @implementation BookTableViewCell
 
--(void)configureCellWithDict:(NSDictionary *)dict{
-    self.bookTitleLabel.text = dict[@"title"];
-    self.authorLabel.text = dict[@"author"];
+-(void)configureCellWithBook:(Book *)book{
+    self.bookTitleLabel.text = book.bookTitle;
+    self.authorLabel.text = book.author;
 }
 
 @end

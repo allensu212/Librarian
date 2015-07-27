@@ -35,7 +35,16 @@
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (!error) {
             NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-            callback(jsonArray);
+            NSMutableArray *booksArray = [[NSMutableArray alloc]init];
+            
+            for (NSDictionary *bookDict in jsonArray) {
+                
+                Book *theBook = [[Book alloc]initWithTitle:bookDict[@"title"] author:bookDict[@"author"] publisher:bookDict[@"publisher"] categories:bookDict[@"categories"] lastCheckedOut:bookDict[@"lastCheckedOut"] user:bookDict[@"lastCheckedOutBy"] url:bookDict[@"url"]];
+                [booksArray addObject:theBook];
+            }
+            
+            callback(booksArray);
+            
         }else {
             dispatch_async(dispatch_get_main_queue(), ^{
                 UIAlertView *alertView = [UIAlertView showWithTitle:@"Error" message:@"Error with Fetching Books" cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:nil];
@@ -76,9 +85,9 @@
     [dataTask resume];
 }
 
--(void)deleteBook:(NSString *)bookURL withCompletionBlock:(DeleteBookCompletionBlock)callback{
+-(void)deleteBook:(Book *)book withCompletionBlock:(DeleteBookCompletionBlock)callback{
     
-    NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", ENDPOINT_URL, bookURL]];
+    NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", ENDPOINT_URL, book.url]];
     NSMutableURLRequest *theRequest = [[NSMutableURLRequest alloc]initWithURL:theURL];
     
     [theRequest setHTTPMethod:@"DELETE"];
@@ -167,8 +176,10 @@
 
     NSURLSessionUploadTask *uploadTask = [session uploadTaskWithRequest:theRequest fromData:userData completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (!error) {
-            NSDictionary *dataDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-            callback(dataDict);
+            NSDictionary *bookDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            Book *theBook = [[Book alloc]initWithTitle:bookDict[@"title"] author:bookDict[@"author"] publisher:bookDict[@"publisher"] categories:bookDict[@"categories"] lastCheckedOut:bookDict[@"lastCheckedOut"] user:bookDict[@"lastCheckedOutBy"] url:bookDict[@"url"]];
+            
+            callback(theBook);
         }else {
             dispatch_async(dispatch_get_main_queue(), ^{
                 UIAlertView *alertView = [UIAlertView showWithTitle:@"Error" message:@"Could Not Complete the Operation" cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:nil];
@@ -198,8 +209,12 @@
     
     NSURLSessionUploadTask *uploadTask = [session uploadTaskWithRequest:theRequest fromData:userData completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (!error) {
-            NSDictionary *dataDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-            callback(dataDict);
+            
+            NSDictionary *bookDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            Book *theBook = [[Book alloc]initWithTitle:bookDict[@"title"] author:bookDict[@"author"] publisher:bookDict[@"publisher"] categories:bookDict[@"categories"] lastCheckedOut:bookDict[@"lastCheckedOut"] user:bookDict[@"lastCheckedOutBy"] url:bookDict[@"url"]];
+            
+            callback(theBook);
+            
         }else {
             dispatch_async(dispatch_get_main_queue(), ^{
                 UIAlertView *alertView = [UIAlertView showWithTitle:@"Error" message:@"Could Not Complete the Operation" cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:nil];

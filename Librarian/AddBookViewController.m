@@ -21,7 +21,7 @@ typedef enum : NSInteger {
 } NewBookInfoType;
 
 @interface AddBookViewController () <UITextFieldDelegate>
-@property (nonatomic, strong) Book *book;
+//@property (nonatomic, strong) Book *newBook;
 @property (weak, nonatomic) IBOutlet UIButton *actionButton;
 @property (weak, nonatomic) IBOutlet UITextField *bookTitleTextField;
 @property (weak, nonatomic) IBOutlet UITextField *authorTextField;
@@ -33,15 +33,14 @@ typedef enum : NSInteger {
     BOOL _isEditing;
 }
 
-#pragma mark - LazyInstantiation
-
--(Book *)book{
-    if (!_book) {
-        _book = [[Book alloc]init];
-        _book.url = self.currentBookDict[@"url"];
-    }
-    return _book;
-}
+//#pragma mark - LazyInstantiation
+//
+//-(Book *)newBook{
+//    if (!_newBook) {
+//        _newBook = [[Book alloc]init];
+//    }
+//    return _newBook;
+//}
 
 #pragma mark - LifeCycle
 
@@ -59,7 +58,7 @@ typedef enum : NSInteger {
         label = [[NavigationBarLabel alloc]initWithText:@"Edit Book"];
         [self.actionButton setTitle:@"Update" forState:UIControlStateNormal];
         
-        [self fillOutTextFieldsWithBookDict:self.currentBookDict];
+        [self fillOutTextFieldsWithBook:self.currentBook];
 
     }else {
         label = [[NavigationBarLabel alloc]initWithText:@"Add Book"];
@@ -69,15 +68,17 @@ typedef enum : NSInteger {
     self.navigationItem.titleView = label;
 }
 
--(void)fillOutTextFieldsWithBookDict:(NSDictionary *)bookDict{
-    self.bookTitleTextField.text = bookDict[@"title"];
-    self.authorTextField.text = bookDict[@"author"];
-    self.publisherTextField.text = bookDict[@"publisher"];
-    self.categoriesTextField.text = bookDict[@"categories"];
-    self.book.bookTitle = self.bookTitleTextField.text;
-    self.book.author = self.authorTextField.text;
-    self.book.publisher = self.publisherTextField.text;
-    self.book.categories = self.categoriesTextField.text;
+-(void)fillOutTextFieldsWithBook:(Book *)book{
+    
+    self.bookTitleTextField.text = book.bookTitle;
+    self.authorTextField.text = book.author;
+    self.publisherTextField.text = book.publisher;
+    self.categoriesTextField.text = book.categories;
+    
+//    self.currentBook.bookTitle = self.bookTitleTextField.text;
+//    self.currentBook.author = self.authorTextField.text;
+//    self.currentBook.publisher = self.publisherTextField.text;
+//    self.currentBook.categories = self.categoriesTextField.text;
 }
 
 #pragma mark - UITextFieldDelegate
@@ -88,16 +89,16 @@ typedef enum : NSInteger {
     
     switch (infoType) {
         case INFO_BOOK_TITLE:
-            self.book.bookTitle = textField.text;
+            self.currentBook.bookTitle = textField.text;
             break;
         case INFO_BOOK_AUTHOR:
-            self.book.author = textField.text;
+            self.currentBook.author = textField.text;
             break;
         case INFO_BOOK_PUBLISHER:
-            self.book.publisher = textField.text;
+            self.currentBook.publisher = textField.text;
             break;
         case INFO_BOOK_CATEGORIES:
-            self.book.categories = textField.text;
+            self.currentBook.categories = textField.text;
             break;
         default:
             break;
@@ -114,16 +115,16 @@ typedef enum : NSInteger {
     
     switch (infoType) {
         case INFO_BOOK_TITLE:
-            self.book.bookTitle = textField.text;
+            self.currentBook.bookTitle = textField.text;
             break;
         case INFO_BOOK_AUTHOR:
-            self.book.author = textField.text;
+            self.currentBook.author = textField.text;
             break;
         case INFO_BOOK_PUBLISHER:
-            self.book.publisher = textField.text;
+            self.currentBook.publisher = textField.text;
             break;
         case INFO_BOOK_CATEGORIES:
-            self.book.categories = textField.text;
+            self.currentBook.categories = textField.text;
             break;
         default:
             break;
@@ -147,11 +148,11 @@ typedef enum : NSInteger {
 
 -(void)addNewBook{
     
-    if (self.book.bookTitle != nil && self.book.author != nil)
+    if (self.currentBook.bookTitle != nil && self.currentBook.author != nil)
     {
         NetworkManager *networkManager = [NetworkManager sharedManager];
         
-        [networkManager addNewBook:self.book withCompletionBlock:^{
+        [networkManager addNewBook:self.currentBook withCompletionBlock:^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 [SVProgressHUD dismiss];
@@ -175,10 +176,10 @@ typedef enum : NSInteger {
 
 -(void)updateBookInformation{
     
-    [[NetworkManager sharedManager]updateBookInfo:self.book withCompletionBlock:^(NSDictionary *dataDict) {
+    [[NetworkManager sharedManager]updateBookInfo:self.currentBook withCompletionBlock:^(Book *updatedBook) {
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.delegate userDidUpdateBookInformationWithDict:dataDict];
+            [self.delegate userDidUpdateBookInformationWithDict:updatedBook];
             [SVProgressHUD dismiss];
             [self dismissViewControllerAnimated:YES completion:nil];
         });

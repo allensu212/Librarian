@@ -15,5 +15,9 @@
 @property (nonatomic, strong) NSString *publisher;
 @property (nonatomic, strong) NSString *categories;
 @property (nonatomic, strong) NSString *url;
+@property (nonatomic, strong) NSString *lastCheckedOut;
+@property (nonatomic, strong) NSString *lastCheckedOutBy;
+
+-(instancetype)initWithTitle:(NSString *)bookTitle author:(NSString *)author publisher:(NSString *)publisher categories:(NSString *)categories lastCheckedOut:(NSString *)lastCheckedOut user:(NSString *)user url:(NSString *)url;
 
 @end
