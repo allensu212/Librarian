@@ -21,7 +21,6 @@ typedef enum : NSInteger {
 } NewBookInfoType;
 
 @interface AddBookViewController () <UITextFieldDelegate>
-//@property (nonatomic, strong) Book *newBook;
 @property (weak, nonatomic) IBOutlet UIButton *actionButton;
 @property (weak, nonatomic) IBOutlet UITextField *bookTitleTextField;
 @property (weak, nonatomic) IBOutlet UITextField *authorTextField;
@@ -33,14 +32,14 @@ typedef enum : NSInteger {
     BOOL _isEditing;
 }
 
-//#pragma mark - LazyInstantiation
-//
-//-(Book *)newBook{
-//    if (!_newBook) {
-//        _newBook = [[Book alloc]init];
-//    }
-//    return _newBook;
-//}
+#pragma mark - LazyInstantiation
+
+-(Book *)currentBook{
+    if (!_currentBook) {
+        _currentBook = [[Book alloc]init];
+    }
+    return _currentBook;
+}
 
 #pragma mark - LifeCycle
 
@@ -74,11 +73,6 @@ typedef enum : NSInteger {
     self.authorTextField.text = book.author;
     self.publisherTextField.text = book.publisher;
     self.categoriesTextField.text = book.categories;
-    
-//    self.currentBook.bookTitle = self.bookTitleTextField.text;
-//    self.currentBook.author = self.authorTextField.text;
-//    self.currentBook.publisher = self.publisherTextField.text;
-//    self.currentBook.categories = self.categoriesTextField.text;
 }
 
 #pragma mark - UITextFieldDelegate

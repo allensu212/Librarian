@@ -12,4 +12,5 @@
 
 @interface BookDetailViewController : UIViewController
 @property (nonatomic, strong) Book *bookToShow;
+
 @end

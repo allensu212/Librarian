@@ -12,6 +12,8 @@
 #import "NetworkManager.h"
 #import "NavigationBarLabel.h"
 #import "Constants.h"
+#import "Book.h"
+#import "AddBookViewController.h"
 #import "UIAlertView+Blocks.h"
 #import <QuartzCore/QuartzCore.h>
 
