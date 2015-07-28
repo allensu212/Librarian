@@ -60,9 +60,9 @@
     NSString *formattedString = [dateFormatter stringFromDate:date];
     
     NSString *publisherString = book.publisher;
-    NSString *formattedPublisherString = [publisherString isEqualToString:@"(null)"] ? @"Deafult": book.publisher;
+    NSString *formattedPublisherString = [publisherString isEqualToString:@"(null)"] ? @"Default": book.publisher;
     NSString *categoriesString = book.categories;
-    NSString *formattedCategoriesString = [categoriesString isEqualToString:@"(null)"] ? @"Deafult": book.categories;
+    NSString *formattedCategoriesString = [categoriesString isEqualToString:@"(null)"] ? @"Default": book.categories;
     
     self.bookInfoTextView.text = [NSString stringWithFormat:@"Publisher: %@\nTags: %@\n\nLast Checked Out:\n%@ @ %@", formattedPublisherString, formattedCategoriesString, book.lastCheckedOutBy, formattedString];
     

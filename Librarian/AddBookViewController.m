@@ -69,10 +69,12 @@ typedef enum : NSInteger {
 
 -(void)fillOutTextFieldsWithBook:(Book *)book{
     
+    NSString *formattedPublisherString = [book.publisher isEqualToString:@"(null)"] ? @"Default": book.publisher;
+    NSString *formattedCategoriesString = [book.categories isEqualToString:@"(null)"] ? @"Default": book.categories;
     self.bookTitleTextField.text = book.bookTitle;
     self.authorTextField.text = book.author;
-    self.publisherTextField.text = book.publisher;
-    self.categoriesTextField.text = book.categories;
+    self.publisherTextField.text = formattedPublisherString;
+    self.categoriesTextField.text = formattedCategoriesString;
 }
 
 #pragma mark - UITextFieldDelegate
