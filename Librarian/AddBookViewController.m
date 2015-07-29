@@ -131,33 +131,17 @@ typedef enum : NSInteger {
     return YES;
 }
 
-#pragma mark - IBAction
+#pragma mark - ManagingBooks
 
-- (IBAction)submitNewBook:(id)sender
-{
-    if (self.updatingBookInfo) {
-        [self updateBookInformation];
-    }else {
-        [self addNewBook];
-    }
-}
-
--(void)addNewBook{
+-(void)manageBook{
     
-    if (self.currentBook.bookTitle != nil && self.currentBook.author != nil)
+    if (self.currentBook.bookTitle != nil && self.currentBook.author != nil && ![self.currentBook.bookTitle isEqualToString:@""] && ![self.currentBook.author isEqualToString:@""])
     {
-        NetworkManager *networkManager = [NetworkManager sharedManager];
-        
-        [networkManager addNewBook:self.currentBook withCompletionBlock:^{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
-                [SVProgressHUD dismiss];
-                _isEditing = NO;
-                [self dismissViewControllerAnimated:YES completion:nil];
-            });
-        }];
-        [SVProgressHUD setBackgroundColor:[UIColor whiteColor]];
-        [SVProgressHUD showWithStatus:@"Adding" maskType:SVProgressHUDMaskTypeGradient];
+        if (self.updatingBookInfo) {
+            [self updateBookInformation];
+        }else {
+            [self addNewBook];
+        }
     }
     else
     {
@@ -170,10 +154,22 @@ typedef enum : NSInteger {
     }
 }
 
+-(void)addNewBook{
+    
+    [[NetworkManager sharedManager] addNewBook:self.currentBook withCompletionBlock:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [SVProgressHUD dismiss];
+            _isEditing = NO;
+            [self dismissViewControllerAnimated:YES completion:nil];
+        });
+    }];
+    [SVProgressHUD setBackgroundColor:[UIColor whiteColor]];
+    [SVProgressHUD showWithStatus:@"Adding" maskType:SVProgressHUDMaskTypeGradient];
+}
+
 -(void)updateBookInformation{
     
     [[NetworkManager sharedManager]updateBookInfo:self.currentBook withCompletionBlock:^(Book *updatedBook) {
-        
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.delegate userDidUpdateBookInformationWithDict:updatedBook];
             [SVProgressHUD dismiss];
@@ -183,6 +179,13 @@ typedef enum : NSInteger {
     
     [SVProgressHUD setBackgroundColor:[UIColor whiteColor]];
     [SVProgressHUD showWithStatus:@"Updating" maskType:SVProgressHUDMaskTypeGradient];
+}
+
+#pragma mark - IBAction
+
+- (IBAction)submitNewBook:(id)sender
+{
+    [self manageBook];
 }
 
 - (IBAction)done:(id)sender
