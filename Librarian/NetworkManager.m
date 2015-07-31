@@ -32,6 +32,7 @@
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/books", ENDPOINT_URL]];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     NSURLRequest *request = [[NSURLRequest alloc]initWithURL:url];
+    
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (!error) {
             NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
@@ -39,7 +40,11 @@
             
             for (NSDictionary *bookDict in jsonArray) {
                 
+                //constructor injection vs setter injection
+                //constructor injection is safer because you could set them read only if needed
+                
                 Book *theBook = [[Book alloc]initWithTitle:bookDict[@"title"] author:bookDict[@"author"] publisher:bookDict[@"publisher"] categories:bookDict[@"categories"] lastCheckedOut:bookDict[@"lastCheckedOut"] user:bookDict[@"lastCheckedOutBy"] url:bookDict[@"url"]];
+                
                 [booksArray addObject:theBook];
             }
             
