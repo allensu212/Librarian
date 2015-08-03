@@ -75,6 +75,28 @@
     }];
 }
 
+-(void)deleteAllBooks{
+    
+    [[NetworkManager sharedManager] deleteAllBooksWithCompletionBlock:^(NSArray *dataArray) {
+        self.booksDataArray = [NSMutableArray arrayWithArray:dataArray];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    }];
+}
+
+-(void)deleteBookAtIndexPath:(NSIndexPath *)indexPath{
+    
+    Book *selectedBook = self.booksDataArray[indexPath.row];
+
+    [[NetworkManager sharedManager] deleteBook:selectedBook withCompletionBlock:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.booksDataArray removeObjectAtIndex:indexPath.row];
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        });
+    }];
+}
+
 #pragma mark - UITableViewDataSource
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -90,18 +112,8 @@
 }
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        
-        Book *selectedBook = self.booksDataArray[indexPath.row];
-        
-        [[NetworkManager sharedManager] deleteBook:selectedBook withCompletionBlock:^{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
-                [self.booksDataArray removeObjectAtIndex:indexPath.row];
-                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            });
-        }];
+        [self deleteBookAtIndexPath:indexPath];
     }
 }
 
@@ -130,16 +142,6 @@
     }];
 
     [alertView show];
-}
-
--(void)deleteAllBooks{
-    
-    [[NetworkManager sharedManager] deleteAllBooksWithCompletionBlock:^(NSArray *dataArray) {
-        self.booksDataArray = [NSMutableArray arrayWithArray:dataArray];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
-    }];
 }
 
 #pragma mark - Navigation
