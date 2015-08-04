@@ -75,7 +75,7 @@
 
 -(void)updateCheckOutInfoWithUsername:(NSString *)username{
     
-    [[NetworkManager sharedManager]updateCheckOutInfoWithUsername:username bookInfo:self.bookToShow.url completionBlock:^(Book *book) {
+    [[NetworkManager sharedManager]updateCheckOutInfoWithUsername:username bookInfo:self.bookToShow completionBlock:^(Book *book) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self updateUIWithBook:book];
         });

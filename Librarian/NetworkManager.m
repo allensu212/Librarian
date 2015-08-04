@@ -191,9 +191,9 @@
     
 }
 
--(void)updateCheckOutInfoWithUsername:(NSString *)username bookInfo:(NSString *)bookURL completionBlock:(UpdateCheckOutInfoCompletionBlock)callback{
+-(void)updateCheckOutInfoWithUsername:(NSString *)username bookInfo:(Book *)book completionBlock:(UpdateCheckOutInfoCompletionBlock)callback{
     
-    NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", ENDPOINT_URL, bookURL]];
+    NSURL *theURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", ENDPOINT_URL, book.url]];
     
     NSString *dataString = [NSString stringWithFormat:@"lastCheckedOutBy=%@", username];
     NSData *userData = [dataString dataUsingEncoding:NSUTF8StringEncoding];

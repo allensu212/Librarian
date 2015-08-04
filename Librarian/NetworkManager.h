@@ -23,7 +23,7 @@ typedef void(^DeleteCollectionCompletionBlock)(NSArray *dataArray);
 +(NetworkManager *)sharedManager;
 
 -(void)fetchBooksWithCompletionBlock:(FetchBooksCompletionBlock)callback;
--(void)updateCheckOutInfoWithUsername:(NSString *)username bookInfo:(NSString *)bookURL completionBlock:(UpdateCheckOutInfoCompletionBlock)callback;
+-(void)updateCheckOutInfoWithUsername:(NSString *)username bookInfo:(Book *)book completionBlock:(UpdateCheckOutInfoCompletionBlock)callback;
 -(void)updateBookInfo:(Book *)book withCompletionBlock:(UpdateBookInfoCompletionBlock)callback;
 -(void)addNewBook:(Book *)newBook withCompletionBlock:(AddBookCompletionBlock)callback;
 -(void)deleteBook:(Book *)book withCompletionBlock:(DeleteBookCompletionBlock)callback;
