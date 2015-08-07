@@ -154,6 +154,8 @@ typedef enum : NSInteger {
     }
 }
 
+#pragma mark - Networking
+
 -(void)addNewBook{
     
     [[NetworkManager sharedManager] addNewBook:self.currentBook withCompletionBlock:^{
