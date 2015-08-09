@@ -19,7 +19,7 @@
 
 @interface AddBookViewController : UIViewController
 @property (nonatomic, assign) BOOL updatingBookInfo;
-@property (nonatomic, strong) Book *currentBook;
+@property (nonatomic, copy) Book *currentBook;
 @property (nonatomic, weak) id<AddBookViewControllerDelegate>delegate;
 
 @end

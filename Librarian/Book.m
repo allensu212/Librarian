@@ -23,4 +23,11 @@
     return self;
 }
 
+-(id)copyWithZone:(NSZone *)zone{
+    
+    Book *book = [[Book alloc] initWithTitle:self.bookTitle author:self.author publisher:self.publisher categories:self.categories lastCheckedOut:self.lastCheckedOut user:self.lastCheckedOutBy url:self.url];
+    
+    return book;
+}
+
 @end

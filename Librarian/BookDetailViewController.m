@@ -100,11 +100,12 @@
                                       otherButtonTitles:@[@"Checkout"]
                                                tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
         if (buttonIndex == 1) {
-            NSString *username = [[alertView textFieldAtIndex:0]text];
-            [self updateCheckOutInfoWithUsername:username];
+            [[NSUserDefaults standardUserDefaults] setValue:[[alertView textFieldAtIndex:0]text] forKey:@"lastCheckOutBy"];
+            [self updateCheckOutInfoWithUsername:[[NSUserDefaults standardUserDefaults] objectForKey:@"lastCheckOutBy"]];
         }
     }];
     
+    [alertView textFieldAtIndex:0].text = [[NSUserDefaults standardUserDefaults]objectForKey:@"lastCheckOutBy"];
     [alertView show];
 }
 
@@ -117,7 +118,7 @@
             
             UINavigationController *navController = segue.destinationViewController;
             self.addBookController = (AddBookViewController *)navController.topViewController;
-            self.addBookController.updatingBookInfo = YES;
+             self.addBookController.updatingBookInfo = YES;
             self.addBookController.currentBook = self.bookToShow;
             self.addBookController.delegate = self;
         }

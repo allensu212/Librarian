@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Book : NSObject
+@interface Book : NSObject <NSCopying>
 
 @property (nonatomic, strong) NSString *bookTitle;
 @property (nonatomic, strong) NSString *author;

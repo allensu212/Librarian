@@ -56,7 +56,6 @@ typedef enum : NSInteger {
     if (self.updatingBookInfo) {
         label = [[NavigationBarLabel alloc]initWithText:@"Edit Book"];
         [self.actionButton setTitle:@"Update" forState:UIControlStateNormal];
-        
         [self fillOutTextFieldsWithBook:self.currentBook];
 
     }else {
@@ -81,20 +80,22 @@ typedef enum : NSInteger {
 
 -(void)textFieldDidEndEditing:(UITextField *)textField{
     
+    NSString *trimmedString = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
     NewBookInfoType infoType = textField.tag;
     
     switch (infoType) {
         case INFO_BOOK_TITLE:
-            self.currentBook.bookTitle = textField.text;
+            self.currentBook.bookTitle = trimmedString;
             break;
         case INFO_BOOK_AUTHOR:
-            self.currentBook.author = textField.text;
+            self.currentBook.author = trimmedString;
             break;
         case INFO_BOOK_PUBLISHER:
-            self.currentBook.publisher = textField.text;
+            self.currentBook.publisher = trimmedString;
             break;
         case INFO_BOOK_CATEGORIES:
-            self.currentBook.categories = textField.text;
+            self.currentBook.categories = trimmedString;
             break;
         default:
             break;
@@ -107,20 +108,22 @@ typedef enum : NSInteger {
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     
+    NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    
     NewBookInfoType infoType = textField.tag;
     
     switch (infoType) {
         case INFO_BOOK_TITLE:
-            self.currentBook.bookTitle = textField.text;
+            self.currentBook.bookTitle = newString;
             break;
         case INFO_BOOK_AUTHOR:
-            self.currentBook.author = textField.text;
+            self.currentBook.author = newString;
             break;
         case INFO_BOOK_PUBLISHER:
-            self.currentBook.publisher = textField.text;
+            self.currentBook.publisher = newString;
             break;
         case INFO_BOOK_CATEGORIES:
-            self.currentBook.categories = textField.text;
+            self.currentBook.categories = newString;
             break;
         default:
             break;
