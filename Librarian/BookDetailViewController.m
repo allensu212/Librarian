@@ -59,8 +59,8 @@
     
     self.bookTitleLabel.text = book.bookTitle;
     self.authorLabel.text = book.author;
-    self.bookTitleLabel.font = [UIFont fontWithName:FONT_MAIN size:20.0f];
-    self.authorLabel.font = [UIFont fontWithName:FONT_MAIN size:16.0f];
+    self.bookTitleLabel.font = [UIFont fontWithName:FONT_MAIN size:16.0f];
+    self.authorLabel.font = [UIFont fontWithName:FONT_MAIN size:14.0f];
     [self configureTextViewUIFromBook:book];
 }
 
@@ -80,7 +80,7 @@
     
     self.bookInfoTextView.text = [NSString stringWithFormat:@"Publisher: %@\nTags: %@\n\nLast Checked Out:\n%@ @ %@", formattedPublisherString, formattedCategoriesString, book.lastCheckedOutBy, formattedString];
     
-    self.bookInfoTextView.font = [UIFont fontWithName:FONT_MAIN size:14.0f];
+    self.bookInfoTextView.font = [UIFont fontWithName:FONT_MAIN size:12.0f];
     self.bookInfoTextView.textColor = [UIColor darkGrayColor];
     self.bookInfoTextView.textAlignment = NSTextAlignmentRight;
 }

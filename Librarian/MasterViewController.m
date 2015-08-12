@@ -49,9 +49,7 @@
     self.addBookButton.layer.shadowColor = [[UIColor darkGrayColor]CGColor];
     self.addBookButton.layer.shadowOpacity = 0.7f;
     self.addBookButton.layer.shadowOffset = CGSizeMake(0.5f, 0.5f);
-    self.addBookButton.layer.shadowRadius = 4.0f;
-    
-    self.tableView.contentInset = UIEdgeInsetsMake(8, 0, 0, 0);
+    self.addBookButton.layer.shadowRadius = 4.0f;    
 }
 
 -(void)setEditing:(BOOL)editing animated:(BOOL)animated {
