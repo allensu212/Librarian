@@ -46,7 +46,19 @@ typedef enum : NSInteger {
 -(void)viewDidLoad{
     [super viewDidLoad];
     [self configureNav];
+    [self updateUI];
     _isEditing = NO;
+}
+
+-(void)updateUI{
+    
+    for (UITextField *textField in self.view.subviews) {
+        textField.layer.shadowColor = [[UIColor darkGrayColor]CGColor];
+        textField.layer.shadowOpacity = 0.7f;
+        textField.layer.shadowOffset = CGSizeMake(0.1f, 0.3f);
+        textField.layer.shadowRadius = 2.0f;
+    }
+    self.actionButton.layer.cornerRadius = self.actionButton.frame.size.width / 2;
 }
 
 -(void)configureNav{
