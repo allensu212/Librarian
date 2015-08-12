@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define CELL_HEIGHT 64.0f
+#define CELL_HEIGHT 80.0f
 #define CELL_IDENTIFIER @"bookCell"
 #define SEGUE_DETAIL_IDENTIFIER @"showBookDetail"
 #define SEGUE_ADD_BOOK_IDENTIFIER @"addBook"

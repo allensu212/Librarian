@@ -15,9 +15,11 @@
 #import "Book.h"
 
 @interface BookDetailViewController () <AddBookViewControllerDelegate>
+@property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UILabel *bookTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 @property (weak, nonatomic) IBOutlet UITextView *bookInfoTextView;
+@property (weak, nonatomic) IBOutlet UIButton *checkOutButton;
 @property (nonatomic, strong) AddBookViewController *addBookController;
 @end
 
@@ -39,6 +41,18 @@
     
     NavigationBarLabel *label = [[NavigationBarLabel alloc]initWithText:@"Detail"];
     self.navigationItem.titleView = label;
+    
+    self.containerView.layer.cornerRadius = 2.0f;
+    self.containerView.layer.shadowColor = [[UIColor darkGrayColor]CGColor];
+    self.containerView.layer.shadowOpacity = 0.7f;
+    self.containerView.layer.shadowOffset = CGSizeMake(0.1f, 0.3f);
+    self.containerView.layer.shadowRadius = 2.0f;
+    
+    self.checkOutButton.layer.cornerRadius = self.checkOutButton.frame.size.width / 2;
+    self.checkOutButton.layer.shadowColor = [[UIColor darkGrayColor]CGColor];
+    self.checkOutButton.layer.shadowOpacity = 0.7f;
+    self.checkOutButton.layer.shadowOffset = CGSizeMake(0.5f, 0.5f);
+    self.checkOutButton.layer.shadowRadius = 4.0f;
 }
 
 -(void)updateUIWithBook:(Book *)book{
