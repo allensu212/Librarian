@@ -56,7 +56,7 @@ typedef enum : NSInteger {
         textField.layer.shadowColor = [[UIColor darkGrayColor]CGColor];
         textField.layer.shadowOpacity = 0.7f;
         textField.layer.shadowOffset = CGSizeMake(0.1f, 0.3f);
-        textField.layer.shadowRadius = 2.0f;
+        textField.layer.shadowRadius = 1.0f;
     }
     self.actionButton.layer.cornerRadius = self.actionButton.frame.size.width / 2;
 }
