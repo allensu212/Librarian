@@ -133,7 +133,7 @@
 {
     UIAlertView *alertView = [UIAlertView showWithTitle:@"Are You Sure?"
                                                 message:@"Delete All Books at Once?"
-                                      cancelButtonTitle:@"Cencel" otherButtonTitles:@[@"Yes"]
+                                      cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"Yes"]
                                                tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
         if (buttonIndex == 1) {
             [self deleteAllBooks];
