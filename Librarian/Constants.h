@@ -14,7 +14,7 @@
 #define SEGUE_ADD_BOOK_IDENTIFIER @"addBook"
 #define SEGUE_SHOW_EDIT_IDENTIFIER @"showEdit"
 #define FONT_MAIN @"Futura"
-#define ENDPOINT_URL @"http://prolific-interview.herokuapp.com/5568cde6487d680009cf2624"
+#define ENDPOINT_URL @"put your endpoint url here..."
 #define ITUNES_WEB_SERVICE @"https://itunes.apple.com/search?"
 static NSString * const LoadingCellIdentifier = @"LoadingCell";
 
